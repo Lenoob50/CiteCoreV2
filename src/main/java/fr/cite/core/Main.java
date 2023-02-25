@@ -31,6 +31,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new OnJoin(),this);
         //Ajout des options au fichier de configuration
         configuration.addDefault("msg.prefix","&3&lCité&r");
+        configuration.addDefault("options.welcome",false);
         //Génération du fichier de configuration
         configuration.options().copyDefaults(true);
         saveConfig();
