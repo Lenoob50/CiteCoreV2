@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import static org.bukkit.ChatColor.*;
 
 public class Main extends JavaPlugin {
 
@@ -29,9 +30,11 @@ public class Main extends JavaPlugin {
         instance = this;
         //Enregistrements des evenements relatifs au jeu
         pm.registerEvents(new OnJoin(),this);
+        pm.registerEvents(new OnLeave(),this);
         //Ajout des options au fichier de configuration
-        configuration.addDefault("msg.prefix","&3&lCité&r");
+        configuration.addDefault("msg.prefix",DARK_AQUA+""+BOLD+"Cite >>"+RESET);
         configuration.addDefault("options.welcome",false);
+        configuration.addDefault("msg.welcome","%player_name% "+GREEN+" à rejoins la cité pour la première fois souhaitez lui la bienvenue");
         //Génération du fichier de configuration
         configuration.options().copyDefaults(true);
         saveConfig();
@@ -45,7 +48,6 @@ public class Main extends JavaPlugin {
     }
 
     public String getPrefix() {
-        prefix.replaceAll("&","§");
         return prefix;
     }
 }
