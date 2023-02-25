@@ -2,6 +2,7 @@ package fr.cite.core;
 
 import fr.cite.core.listeners.OnJoin;
 import fr.cite.core.listeners.OnLeave;
+import fr.cite.core.utils.DatabaseManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
@@ -14,6 +15,7 @@ public class Main extends JavaPlugin {
     public static Main instance;
     public String prefix = getConfig().getString("msg.prefix");
     public FileConfiguration configuration = getConfig();
+    private DatabaseManager databaseManager;
 
     @Override
     public void onLoad() {
@@ -22,11 +24,14 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        this.databaseManager.close();
         super.onDisable();
     }
 
     @Override
     public void onEnable() {
+        //Connexion à la base de donnée
+        databaseManager = new DatabaseManager();
         //Déclaration de la classe principale
         instance = this;
         //Enregistrements des evenements relatifs au jeu
@@ -36,6 +41,14 @@ public class Main extends JavaPlugin {
         configuration.addDefault("msg.prefix",DARK_AQUA+""+BOLD+"Cite >>"+RESET);
         configuration.addDefault("options.welcome",false);
         configuration.addDefault("msg.welcome","%player_name% "+GREEN+" à rejoins la cité pour la première fois souhaitez lui la bienvenue");
+        configuration.addDefault("mysql.host","node2.hogcraft.fr");
+        configuration.addDefault("mysql.port",3306);
+        configuration.addDefault("mysql.dbName","bdd_cite");
+        configuration.addDefault("mysql.user","bdd_cite");
+        configuration.addDefault("mysql.password","qy4_-tC]t1m0-zX2");
+        configuration.addDefault("options.spawn.x",0);
+        configuration.addDefault("options.spawn.y",105);
+        configuration.addDefault("options.spawn.z",0);
         //Génération du fichier de configuration
         configuration.options().copyDefaults(true);
         saveConfig();
@@ -50,5 +63,9 @@ public class Main extends JavaPlugin {
 
     public String getPrefix() {
         return prefix;
+    }
+
+    public DatabaseManager getDatabaseManager() {
+        return databaseManager;
     }
 }

@@ -15,6 +15,7 @@ public class OnJoin implements Listener {
         String welcome_msg = Main.getInstance().getConfig().getString("msg.welcome");
         welcome_msg = welcome_msg.replaceAll("%player_name%",player.getName());
         event.setJoinMessage("");
+        player.setPlayerListHeaderFooter(DARK_AQUA+"Cite",GREEN+"Dev : TitouLeVrai et Lenoob_\n"+YELLOW+"Build : lorddowie\n"+AQUA+"Orga : Dori_Ki");
         if(!player.hasPlayedBefore()){
             if(Main.getInstance().getConfig().getBoolean("options.welcome")){
                 Bukkit.broadcastMessage(Main.getInstance().getPrefix().replaceAll("&","§")+welcome_msg);
