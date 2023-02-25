@@ -1,5 +1,6 @@
 package fr.cite.core;
 
+import fr.cite.core.commands.CommandNPC;
 import fr.cite.core.listeners.OnJoin;
 import fr.cite.core.listeners.OnLeave;
 import fr.cite.core.utils.DatabaseManager;
@@ -30,6 +31,8 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        //Enregistrement des commmandes
+        getCommand("npc").setExecutor(new CommandNPC());
         //Connexion à la base de donnée
         databaseManager = new DatabaseManager();
         //Déclaration de la classe principale
