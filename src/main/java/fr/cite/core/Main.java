@@ -3,6 +3,7 @@ package fr.cite.core;
 import fr.cite.core.commands.CommandNPC;
 import fr.cite.core.listeners.OnJoin;
 import fr.cite.core.listeners.OnLeave;
+import fr.cite.core.utils.DBCredentials;
 import fr.cite.core.utils.DatabaseManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -17,6 +18,7 @@ public class Main extends JavaPlugin {
     public String prefix = getConfig().getString("msg.prefix");
     public FileConfiguration configuration = getConfig();
     private DatabaseManager databaseManager;
+    private DBCredentials dbCredentials;
 
     @Override
     public void onLoad() {
@@ -31,12 +33,12 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        //Déclaration de la classe principale
+        instance = this;
         //Enregistrement des commmandes
         getCommand("npc").setExecutor(new CommandNPC());
         //Connexion à la base de donnée
         databaseManager = new DatabaseManager();
-        //Déclaration de la classe principale
-        instance = this;
         //Enregistrements des evenements relatifs au jeu
         pm.registerEvents(new OnJoin(),this);
         pm.registerEvents(new OnLeave(),this);
