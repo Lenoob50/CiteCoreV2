@@ -33,6 +33,7 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        //J'joute un com
         //Déclaration de la classe principale
         instance = this;
         //Enregistrement des commmandes
