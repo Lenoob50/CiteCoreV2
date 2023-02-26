@@ -59,6 +59,7 @@ public class Main extends JavaPlugin {
         saveConfig();
         saveDefaultConfig();
         super.onEnable();
+        System.out.println("Plugin charge");
     }
 
 
