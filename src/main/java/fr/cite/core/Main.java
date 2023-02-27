@@ -3,6 +3,7 @@ package fr.cite.core;
 import fr.cite.core.commands.CommandNPC;
 import fr.cite.core.listeners.OnJoin;
 import fr.cite.core.listeners.OnLeave;
+import fr.cite.core.scoreboard.ScoreboardManager;
 import fr.cite.core.utils.DBCredentials;
 import fr.cite.core.utils.DatabaseManager;
 import org.bukkit.Bukkit;
@@ -19,6 +20,7 @@ public class Main extends JavaPlugin {
     public FileConfiguration configuration = getConfig();
     private DatabaseManager databaseManager;
     private DBCredentials dbCredentials;
+    public ScoreboardManager sm = new ScoreboardManager();
 
     @Override
     public void onLoad() {

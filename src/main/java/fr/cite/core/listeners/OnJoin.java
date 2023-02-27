@@ -1,6 +1,7 @@
 package fr.cite.core.listeners;
 
 import fr.cite.core.Main;
+import fr.cite.core.scoreboard.Scoreboard;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -29,6 +30,7 @@ public class OnJoin implements Listener {
                 Bukkit.broadcastMessage(GRAY+"["+GREEN+"+"+GRAY+"] "+RESET+""+player.getName());
             }
         }
+        new Scoreboard(Main.getInstance().sm).game(player);
     }
 
 
