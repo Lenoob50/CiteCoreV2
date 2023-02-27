@@ -8,9 +8,22 @@ fr/cite/core/utils/DbConnection.java
  fr.cite.core.utils.DbConnection
 fr/cite/core/utils/DatabaseManager.java
  fr.cite.core.utils.DatabaseManager
+fr/cite/core/scoreboard/FastBoard.java
+ fr.cite.core.scoreboard.FastBoard
+ fr.cite.core.scoreboard.FastBoard$ObjectiveMode
+ fr.cite.core.scoreboard.FastBoard$ScoreboardAction
+ fr.cite.core.scoreboard.FastBoard$TeamMode
+ fr.cite.core.scoreboard.FastBoard$VersionType
 fr/cite/core/listeners/OnJoin.java
  fr.cite.core.listeners.OnJoin
 fr/cite/core/Main.java
  fr.cite.core.Main
+fr/cite/core/scoreboard/Scoreboard.java
+ fr.cite.core.scoreboard.Scoreboard
+ fr.cite.core.scoreboard.Scoreboard$1
 fr/cite/core/commands/CommandNPC.java
  fr.cite.core.commands.CommandNPC
+fr/cite/core/scoreboard/FastReflection.java
+ fr.cite.core.scoreboard.FastReflection
+fr/cite/core/scoreboard/ScoreboardManager.java
+ fr.cite.core.scoreboard.ScoreboardManager
