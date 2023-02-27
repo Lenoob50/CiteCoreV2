@@ -21,7 +21,7 @@ public class Scoreboard {
 
     public void game(Player player) {
         scoreboardManager.createBoard(player, fastBoard -> {
-            fastBoard.updateTitle(WHITE+""+BOLD+"Sky Defender");
+            fastBoard.updateTitle(WHITE+""+BOLD+"Cité");
 
             Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
                 @Override
@@ -46,7 +46,13 @@ public class Scoreboard {
                     //5
                     WHITE+"  0 Drachmes",
                     //6
-                    WHITE+ ""
+                    WHITE+ "",
+                    //7
+                    WHITE+"Classement ",
+                    //8
+                    WHITE +"0/8",
+                    //9
+                    WHITE+ " "
             );
         });
     }
