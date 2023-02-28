@@ -1,15 +1,24 @@
 package fr.cite.core;
 
+import fr.cite.core.commands.CommandMoney;
 import fr.cite.core.commands.CommandNPC;
 import fr.cite.core.listeners.OnJoin;
 import fr.cite.core.listeners.OnLeave;
 import fr.cite.core.scoreboard.ScoreboardManager;
+import fr.cite.core.tabcomplete.TabNpc;
 import fr.cite.core.utils.DBCredentials;
 import fr.cite.core.utils.DatabaseManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import static org.bukkit.ChatColor.*;
 
 public class Main extends JavaPlugin {
@@ -39,6 +48,8 @@ public class Main extends JavaPlugin {
         instance = this;
         //Enregistrement des commmandes
         getCommand("npc").setExecutor(new CommandNPC());
+        getCommand("npc").setTabCompleter(new TabNpc());
+        getCommand("money").setExecutor(new CommandMoney());
         //Connexion à la base de donnée
         databaseManager = new DatabaseManager();
         //Enregistrements des evenements relatifs au jeu
@@ -76,4 +87,7 @@ public class Main extends JavaPlugin {
     public DatabaseManager getDatabaseManager() {
         return databaseManager;
     }
+
+
+
 }

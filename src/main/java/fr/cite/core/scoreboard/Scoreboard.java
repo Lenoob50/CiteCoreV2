@@ -1,6 +1,7 @@
 package fr.cite.core.scoreboard;
 
 import fr.cite.core.Main;
+import fr.cite.core.utils.SQLMethods;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 
@@ -27,7 +28,7 @@ public class Scoreboard {
                 @Override
                 public void run() {
                     fastBoard.updateLine(2,WHITE+"  0 Drachmes");
-                    fastBoard.updateLine(5,WHITE+"  0 Drachmes");
+                    fastBoard.updateLine(5,WHITE+"  "+ SQLMethods.getMoney(player)+" Drachmes");
                 }
             },20,20);
 
