@@ -1,5 +1,5 @@
 name: CiteCore
-version: 1.0.0
+version: 1.0.1
 authors:
   - Lenoob_
   - TitouLeVrai
@@ -9,4 +9,12 @@ commands:
   npc:
     description: Commande relatives au npc
     permission: core.npc.use
+    permission-message: Vous n'avez pas la permission
+  money:
+    description: Commande relative au Drachmes
+    permission: core.money.use
+    permission-message: Vous n'avez pas la permission
+  leaderboard:
+    description: Commande relative au classement
+    permission: core.leader.use
     permission-message: Vous n'avez pas la permission

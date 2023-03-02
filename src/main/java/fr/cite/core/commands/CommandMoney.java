@@ -23,20 +23,20 @@ public class CommandMoney implements CommandExecutor {
                 if(args[0].equalsIgnoreCase("get")){
                     Player target = Bukkit.getPlayer(args[1]);
                     int coins = SQLMethods.getMoney(target);
-                    player.sendMessage(Main.getInstance().getPrefix()+ ChatColor.GREEN+" Le compte de"+target.getName()+" contient "+coins+" Drachmes" );
+                    player.sendMessage(Main.getInstance().getPrefix()+ ChatColor.GREEN+" Le compte de "+target.getName()+" contient "+coins+" Drachmes" );
                 }
                 if(args[0].equalsIgnoreCase("add")){
                     Player target = Bukkit.getPlayer(args[1]);
                     SQLMethods.addCoins(target,Integer.parseInt(args[2]));
                     int coins = SQLMethods.getMoney(target);
-                    player.sendMessage(Main.getInstance().getPrefix()+ ChatColor.GREEN+" Le compte de"+target.getName()+" contient "+coins+" Drachmes" );
+                    player.sendMessage(Main.getInstance().getPrefix()+ ChatColor.GREEN+" Le compte de "+target.getName()+" contient "+coins+" Drachmes" );
                 }
                 if(args[0].equalsIgnoreCase("remove")){
                     Player target = Bukkit.getPlayer(args[1]);
                     int to_rem = Integer.parseInt(args[2]);
                     SQLMethods.addCoins(target,-to_rem);
                     int coins = SQLMethods.getMoney(target);
-                    player.sendMessage(Main.getInstance().getPrefix()+ ChatColor.GREEN+" Le compte de"+target.getName()+" contient "+coins+" Drachmes" );
+                    player.sendMessage(Main.getInstance().getPrefix()+ ChatColor.GREEN+" Le compte de "+target.getName()+" contient "+coins+" Drachmes" );
                 }
             }
         }

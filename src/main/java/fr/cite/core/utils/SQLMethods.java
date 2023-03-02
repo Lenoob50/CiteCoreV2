@@ -4,16 +4,21 @@ import fr.cite.core.Main;
 import javafx.scene.chart.BubbleChart;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Team;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SQLMethods {
 
     public static DbConnection dbConnection = Main.getInstance().getDatabaseManager().getDbConnection();
     public static Connection connection;
+    public static int argent = 0;
+    public static String test = "";
 
     static {
         try {
@@ -40,10 +45,12 @@ public class SQLMethods {
     }
 
     public static void addCoins(Player player, int coins){
+        int ancien = getMoney(player);
+        int nv = coins+ancien;
         Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(),()->{
             try {
               PreparedStatement preparedStatement = connection.prepareStatement("UPDATE core SET coins = ? WHERE UUID = ?");
-              preparedStatement.setInt(1,coins);
+              preparedStatement.setInt(1,nv);
               preparedStatement.setString(2,player.getUniqueId().toString());
               preparedStatement.executeUpdate();
             }catch (SQLException e){
@@ -53,20 +60,57 @@ public class SQLMethods {
     }
 
     public static int getMoney(Player player){
-        final int[] coins = {0};
+
         Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(),()->{
            try {
                PreparedStatement preparedStatement = connection.prepareStatement("SELECT coins FROM core WHERE UUID = ?");
                preparedStatement.setString(1,player.getUniqueId().toString());
                ResultSet rs = preparedStatement.executeQuery();
                while (rs.next()){
-                   coins[0] = rs.getInt("Coins");
+                   argent = rs.getInt("Coins");
                }
            }catch (SQLException e){
                e.printStackTrace();
            }
         });
-        return coins[0];
+        return argent;
+    }
+
+    public static int classement(Team team){
+        int classement = 0;
+        return classement;
+    }
+
+    public static HashMap doClassement(){
+        HashMap<String,Integer> classement = new HashMap<String,Integer>();
+        Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(),()->{
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT name,Coins FROM team ORDER BY Coins");
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()){
+                    classement.put(rs.getString("name"),rs.getInt("Coins"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+        return classement;
+    }
+
+    public static String test(){
+
+        Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(),()->{
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT name,Coins FROM team ORDER BY Coins");
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()){
+                    test = rs.getString("name");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+        return test;
     }
 
 
