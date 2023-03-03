@@ -18,7 +18,8 @@ public class SQLMethods {
     public static DbConnection dbConnection = Main.getInstance().getDatabaseManager().getDbConnection();
     public static Connection connection;
     public static int argent = 0;
-    public static String test = "";
+    public static ArrayList<String> var = new ArrayList<String>();
+    public static int teams = 0;
 
     static {
         try {
@@ -82,35 +83,33 @@ public class SQLMethods {
     }
 
     public static HashMap doClassement(){
-        HashMap<String,Integer> classement = new HashMap<String,Integer>();
-        Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(),()->{
-            try {
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT name,Coins FROM team ORDER BY Coins");
-                ResultSet rs = preparedStatement.executeQuery();
-                while (rs.next()){
-                    classement.put(rs.getString("name"),rs.getInt("Coins"));
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+        HashMap<String,String> classement = new HashMap<String,String>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT name,Coins FROM team ORDER BY Coins DESC, name ASC");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                String  coins = String.valueOf(rs.getInt("Coins"))+"\n";
+                classement.put(rs.getString("name"),coins);
             }
-        });
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return classement;
     }
 
-    public static String test(){
-
+    public static int getTotalTeam(){
         Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(),()->{
             try {
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT name,Coins FROM team ORDER BY Coins");
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) AS 'Nombre de team' FROM team");
                 ResultSet rs = preparedStatement.executeQuery();
                 while (rs.next()){
-                    test = rs.getString("name");
+                    teams = rs.getInt("Nombre de team");
                 }
-            } catch (SQLException e) {
+            }catch (SQLException e){
                 e.printStackTrace();
             }
         });
-        return test;
+        return teams;
     }
 
 

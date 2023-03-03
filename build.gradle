@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'fr.cite'
-version 'alpha-1.1.0'
+version 'alpha-1.1.1'
 
 repositories {
     mavenCentral()

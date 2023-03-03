@@ -22,13 +22,14 @@ public class Scoreboard {
 
     public void game(Player player) {
         scoreboardManager.createBoard(player, fastBoard -> {
-            fastBoard.updateTitle(WHITE+""+BOLD+"Cité");
+            fastBoard.updateTitle(GREEN+""+BOLD+"Cité");
 
             Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
                 @Override
                 public void run() {
                     fastBoard.updateLine(2,WHITE+"  0 Drachmes");
                     fastBoard.updateLine(5,WHITE+"  "+ SQLMethods.getMoney(player)+" Drachmes");
+                    fastBoard.updateLine(8,WHITE +"  0/"+SQLMethods.getTotalTeam());
                 }
             },20,20);
 
@@ -37,21 +38,21 @@ public class Scoreboard {
                     //0
                     WHITE+" ",
                     //1
-                    RED+"No Team",
+                    AQUA+"No Team",
                     //2
                     WHITE+"  0 Drachmes",
                     //3
                     WHITE+" ",
                     //4
-                    RED+""+player.getName(),
+                    AQUA+""+player.getName(),
                     //5
                     WHITE+"  0 Drachmes",
                     //6
                     WHITE+ "",
                     //7
-                    WHITE+"Classement ",
+                    AQUA+"Classement ",
                     //8
-                    WHITE +"0/8",
+                    WHITE +"   0/8",
                     //9
                     WHITE+ " "
             );
