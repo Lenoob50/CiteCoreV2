@@ -27,7 +27,25 @@ public class Scoreboard {
             Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
                 @Override
                 public void run() {
-                    fastBoard.updateLine(2,WHITE+"  0 Drachmes");
+                   if(Main.getInstance().Apolon.getEntries().contains(player.getDisplayName())){
+                        fastBoard.updateLine(2,WHITE+"  "+SQLMethods.getTeamMoney("Apollon")+" Drachmes");
+                       fastBoard.updateLine(1,AQUA+"Apollon");
+                    }else if(Main.getInstance().Ares.getEntries().contains(player.getDisplayName())){
+                        fastBoard.updateLine(2,WHITE+"  "+SQLMethods.getTeamMoney("Arès")+" Drachmes");
+                       fastBoard.updateLine(1,AQUA+"Arès");
+                    }else if(Main.getInstance().Dionysos.getEntries().contains(player.getDisplayName())){
+                        fastBoard.updateLine(2,WHITE+"  "+SQLMethods.getTeamMoney("Dionysos")+" Drachmes");
+                       fastBoard.updateLine(1,AQUA+"Dionysos");
+                    }else if(Main.getInstance().Poseidon.getEntries().contains(player.getDisplayName())){
+                        fastBoard.updateLine(2,WHITE+"  "+SQLMethods.getTeamMoney("Poséidon")+" Drachmes");
+                       fastBoard.updateLine(1,AQUA+"Poséidon");
+                    }else if(Main.getInstance().Zeus.getEntries().contains(player.getDisplayName())){
+                        fastBoard.updateLine(2,WHITE+"  "+SQLMethods.getTeamMoney("Zeus")+" Drachmes");
+                       fastBoard.updateLine(1,AQUA+"Zeus");
+                    }else{
+                        fastBoard.updateLine(2,WHITE+"  0 Drachmes");
+                       fastBoard.updateLine(1,AQUA+"No Team");
+                    }
                     fastBoard.updateLine(5,WHITE+"  "+ SQLMethods.getMoney(player)+" Drachmes");
                     fastBoard.updateLine(8,WHITE +"  0/"+SQLMethods.getTotalTeam());
                 }

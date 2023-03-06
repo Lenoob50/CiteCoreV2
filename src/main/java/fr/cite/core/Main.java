@@ -3,18 +3,23 @@ package fr.cite.core;
 import fr.cite.core.commands.CommandLeader;
 import fr.cite.core.commands.CommandMoney;
 import fr.cite.core.commands.CommandNPC;
+import fr.cite.core.commands.CommandTeams;
 import fr.cite.core.listeners.OnJoin;
 import fr.cite.core.listeners.OnLeave;
 import fr.cite.core.scoreboard.ScoreboardManager;
 import fr.cite.core.tabcomplete.TabMoney;
 import fr.cite.core.tabcomplete.TabNpc;
+import fr.cite.core.tabcomplete.TabTeams;
 import fr.cite.core.utils.DBCredentials;
 import fr.cite.core.utils.DatabaseManager;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -32,6 +37,12 @@ public class Main extends JavaPlugin {
     private DatabaseManager databaseManager;
     private DBCredentials dbCredentials;
     public ScoreboardManager sm = new ScoreboardManager();
+    public Scoreboard scoreboard;
+    public Team Apolon;
+    public Team Ares;
+    public Team Poseidon;
+    public Team Zeus;
+    public Team Dionysos;
 
     @Override
     public void onLoad() {
@@ -46,7 +57,7 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        //DÃ©claration de la classe principale
+        //Déclaration de la classe principale
         instance = this;
         //Enregistrement des commmandes
         getCommand("npc").setExecutor(new CommandNPC());
@@ -54,7 +65,9 @@ public class Main extends JavaPlugin {
         getCommand("money").setExecutor(new CommandMoney());
         getCommand("money").setTabCompleter(new TabMoney());
         getCommand("leaderboard").setExecutor(new CommandLeader());
-        //Connexion Ã  la base de donnÃ©e
+        getCommand("teams").setExecutor(new CommandTeams());
+        getCommand("teams").setTabCompleter(new TabTeams());
+        //Connexion à la base de donnée
         databaseManager = new DatabaseManager();
         //Enregistrements des evenements relatifs au jeu
         pm.registerEvents(new OnJoin(),this);
@@ -62,7 +75,7 @@ public class Main extends JavaPlugin {
         //Ajout des options au fichier de configuration
         configuration.addDefault("msg.prefix",DARK_AQUA+""+BOLD+"Cite >>"+RESET);
         configuration.addDefault("options.welcome",false);
-        configuration.addDefault("msg.welcome","%player_name% "+GREEN+" Ã  rejoins la citÃ© pour la premiÃ¨re fois souhaitez lui la bienvenue");
+        configuration.addDefault("msg.welcome","%player_name% "+GREEN+" à rejoins la cité pour la première fois souhaitez lui la bienvenue");
         configuration.addDefault("mysql.host","node2.hogcraft.fr");
         configuration.addDefault("mysql.port",3306);
         configuration.addDefault("mysql.dbName","bdd_cite");
@@ -71,10 +84,37 @@ public class Main extends JavaPlugin {
         configuration.addDefault("options.spawn.x",0);
         configuration.addDefault("options.spawn.y",105);
         configuration.addDefault("options.spawn.z",0);
-        //GÃ©nÃ©ration du fichier de configuration
+        //Génération du fichier de configuration
         configuration.options().copyDefaults(true);
         saveConfig();
         saveDefaultConfig();
+        //Création des teams
+        scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+        //Creation de la team Apollon
+        Apolon = scoreboard.registerNewTeam("Apollon");
+        Apolon.setAllowFriendlyFire(true);
+        Apolon.setDisplayName(GREEN+"");
+        Apolon.setPrefix(GREEN+"Apollon ");
+        //Creation de la team Arès
+        Ares = scoreboard.registerNewTeam("Arès");
+        Ares.setAllowFriendlyFire(true);
+        Ares.setDisplayName(RED+"");
+        Ares.setPrefix(RED+"Arès ");
+        //Création de la team Poséidon
+        Poseidon = scoreboard.registerNewTeam("Poséidon");
+        Poseidon.setAllowFriendlyFire(true);
+        Poseidon.setDisplayName(AQUA+"");
+        Poseidon.setPrefix(AQUA+"Poséidon ");
+        //Création de la team Zeus
+        Zeus = scoreboard.registerNewTeam("Zeus");
+        Zeus.setAllowFriendlyFire(true);
+        Zeus.setDisplayName(GOLD+"");
+        Zeus.setPrefix(GOLD+"Zeus ");
+        //Création de la team Dionysos
+        Dionysos = scoreboard.registerNewTeam("Dionysos");
+        Dionysos.setAllowFriendlyFire(true);
+        Dionysos.setPrefix(DARK_PURPLE+"");
+        Dionysos.setPrefix(DARK_PURPLE+"Dionysos ");
         super.onEnable();
         
     }

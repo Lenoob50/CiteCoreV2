@@ -35,6 +35,7 @@ public class OnJoin implements Listener {
             }
         }
         new Scoreboard(Main.getInstance().sm).game(player);
+        player.setScoreboard(Main.getInstance().scoreboard);
     }
 
 
