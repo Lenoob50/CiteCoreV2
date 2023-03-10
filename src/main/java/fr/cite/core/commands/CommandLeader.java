@@ -13,6 +13,7 @@ public class CommandLeader implements CommandExecutor {
         if(sender instanceof Player){
             Player player = (Player) sender;
             player.sendMessage(Main.getInstance().getPrefix()+SQLMethods.sortByValue(SQLMethods.doClassement()));
+            System.out.println(Main.getInstance().team_money);
         }
         return false;
     }

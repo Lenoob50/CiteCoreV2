@@ -93,6 +93,7 @@ public class SQLMethods {
                ResultSet rs = preparedStatement.executeQuery();
                while (rs.next()){
                    argent = rs.getInt("Coins");
+                   Main.getInstance().argent.put(player.getUniqueId(),argent);
                }
            }catch (SQLException e){
                e.printStackTrace();
@@ -139,14 +140,15 @@ public class SQLMethods {
         return teams;
     }
 
-    public static int getTeamMoney(String team_name){
+    public static int getTeamMoney(int team_id){
         Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(),()->{
             try {
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT Coins FROM team WHERE name = ?");
-                preparedStatement.setString(1,team_name);
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT Coins FROM team WHERE id = ?");
+                preparedStatement.setInt(1,team_id);
                 ResultSet rs = preparedStatement.executeQuery();
                 while (rs.next()){
                     drachmes = rs.getInt("Coins");
+                    Main.getInstance().team_money.put(team_id,drachmes);
                 }
             }catch (SQLException e){
                 e.printStackTrace();

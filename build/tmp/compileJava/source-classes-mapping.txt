@@ -8,8 +8,8 @@ fr/cite/core/tabcomplete/TabNpc.java
  fr.cite.core.tabcomplete.TabNpc
 fr/cite/core/listeners/OnLeave.java
  fr.cite.core.listeners.OnLeave
-fr/cite/core/utils/ActionBar.java
- fr.cite.core.utils.ActionBar
+fr/cite/core/tabcomplete/TabTeams.java
+ fr.cite.core.tabcomplete.TabTeams
 fr/cite/core/utils/BDDManipulation.java
  fr.cite.core.utils.BDDManipulation
 fr/cite/core/utils/DBCredentials.java
@@ -23,23 +23,24 @@ fr/cite/core/scoreboard/FastReflection.java
  fr.cite.core.scoreboard.FastReflection$PacketConstructor
 fr/cite/core/utils/DbConnection.java
  fr.cite.core.utils.DbConnection
-fr/cite/core/tabcomplete/TabTeams.java
- fr.cite.core.tabcomplete.TabTeams
 fr/cite/core/utils/DatabaseManager.java
  fr.cite.core.utils.DatabaseManager
-fr/cite/core/commands/CommandNPC.java
- fr.cite.core.commands.CommandNPC
-fr/cite/core/Main.java
- fr.cite.core.Main
 fr/cite/core/commands/CommandLeader.java
  fr.cite.core.commands.CommandLeader
-fr/cite/core/commands/CommandMoney.java
- fr.cite.core.commands.CommandMoney
+fr/cite/core/Main.java
+ fr.cite.core.Main
+ fr.cite.core.Main$1
+fr/cite/core/listeners/OnTalk.java
+ fr.cite.core.listeners.OnTalk
+fr/cite/core/commands/CommandNPC.java
+ fr.cite.core.commands.CommandNPC
 fr/cite/core/utils/SQLMethods.java
  fr.cite.core.utils.SQLMethods
  fr.cite.core.utils.SQLMethods$1
 fr/cite/core/commands/CommandTeams.java
  fr.cite.core.commands.CommandTeams
+fr/cite/core/commands/CommandMoney.java
+ fr.cite.core.commands.CommandMoney
 fr/cite/core/listeners/OnJoin.java
  fr.cite.core.listeners.OnJoin
 fr/cite/core/scoreboard/Scoreboard.java
