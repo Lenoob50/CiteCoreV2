@@ -29,15 +29,31 @@ public class Scoreboard {
             Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
                 @Override
                 public void run() {
-                    SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
                     Date date = new Date();
-                    if(formatter.format(date) == Main.getInstance().getConfig().getString("options.time.close") ){
-                        Bukkit.broadcastMessage(Main.getInstance().getPrefix()+" Test de synchro");
+                    int secondes = date.getSeconds();
+                    int minutes = date.getMinutes();
+                    int heure = date.getHours();
+                    if(heure == Main.getInstance().getConfig().getInt("options.time.close.heure")){
+                        if(minutes == Main.getInstance().getConfig().getInt("options.time.close.minutes")){
+                            if(secondes == Main.getInstance().getConfig().getInt("options.time.close.secondes")){
+                                for(Player op : Bukkit.getOnlinePlayers()){
+                                    if(!op.isOp()){
+                                        op.kickPlayer(Main.getInstance().getPrefix()+" Le serveur est sous couvre-feu");
+                                    }
+                                }
+                                Bukkit.setWhitelist(true);
+                                Bukkit.setWhitelistEnforced(true);
+                            }
+                        }
                     }
-                    if(formatter.format(date).toString() == Main.getInstance().getConfig().getString("options.time.open") ){
-                        Main.getInstance().getServer().setWhitelist(false);
+                    if(heure == Main.getInstance().getConfig().getInt("options.time.open.heure")){
+                        if(minutes == Main.getInstance().getConfig().getInt("options.time.open.minutes")){
+                            if(secondes == Main.getInstance().getConfig().getInt("options.time.open.secondes")){
+                                Bukkit.setWhitelist(false);
+                                Bukkit.setWhitelistEnforced(false);
+                            }
+                        }
                     }
-                    fastBoard.updateLine(10,AQUA+""+formatter.format(date));
                     if(Main.getInstance().Apolon.getEntries().contains(player.getDisplayName())){
                         SQLMethods.getTeamMoney(1);
                         if(Main.getInstance().team_money.get(1) == null){
@@ -88,7 +104,6 @@ public class Scoreboard {
                     }else {
                         fastBoard.updateLine(5,WHITE+"  "+ Main.getInstance().argent.get(player.getUniqueId())+" Drachmes");
                     }
-                    fastBoard.updateLine(12,AQUA+""+date.getSeconds());
                     fastBoard.updateLine(8,WHITE +"  0/"+SQLMethods.getTotalTeam());
                 }
             },20,20);
@@ -112,15 +127,7 @@ public class Scoreboard {
                     //7
                     AQUA+"Classement ",
                     //8
-                    WHITE +"   0/5",
-                    //9
-                    WHITE+ " ",
-                    //10
-                    AQUA+" ",
-                    //11
-                    WHITE+ " ",
-                    //12
-                    AQUA+""+Main.getInstance().getConfig().getString("options.time.close")
+                    WHITE +"   0/5"
             );
         });
     }

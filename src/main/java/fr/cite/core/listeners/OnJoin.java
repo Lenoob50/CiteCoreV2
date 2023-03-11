@@ -2,7 +2,6 @@ package fr.cite.core.listeners;
 
 import fr.cite.core.Main;
 import fr.cite.core.scoreboard.Scoreboard;
-import fr.cite.core.utils.BDDManipulation;
 import fr.cite.core.utils.SQLMethods;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

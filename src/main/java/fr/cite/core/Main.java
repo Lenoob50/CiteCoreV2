@@ -105,8 +105,12 @@ public class Main extends JavaPlugin {
         configuration.addDefault("options.spawn.x",0);
         configuration.addDefault("options.spawn.y",105);
         configuration.addDefault("options.spawn.z",0);
-        configuration.addDefault("options.time.close","02:00:00");
-        configuration.addDefault("options.time.open","10:00:00");
+        configuration.addDefault("options.time.close.heure",2);
+        configuration.addDefault("options.time.close.minutes",0);
+        configuration.addDefault("options.time.close.secondes",0);
+        configuration.addDefault("options.time.open.heure",10);
+        configuration.addDefault("options.time.open.minutes",0);
+        configuration.addDefault("options.time.open.secondes",0);
         //Génération du fichier de configuration
         configuration.options().copyDefaults(true);
         saveConfig();
