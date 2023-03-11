@@ -1,14 +1,12 @@
 package fr.cite.core.scoreboard;
 
+import eu.decentsoftware.holograms.api.DHAPI;
+import eu.decentsoftware.holograms.api.holograms.Hologram;
 import fr.cite.core.Main;
 import fr.cite.core.utils.SQLMethods;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
-
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 import static org.bukkit.ChatColor.*;
 
@@ -54,6 +52,31 @@ public class Scoreboard {
                             }
                         }
                     }
+                    Hologram teamhologram = DHAPI.getHologram("Teams");
+                    if(teamhologram != null){
+                        ArrayList<String> lines = new ArrayList<>();
+                        HashMap<String ,Integer > classment = SQLMethods.sortByValue(SQLMethods.doTeamClassement());
+                        lines.add(ChatColor.GREEN+"Classement des équipes");
+                        for(Map.Entry<String, Integer> mapentry : classment.entrySet()){
+                            lines.add(ChatColor.AQUA+""+mapentry.getKey()+" : "+mapentry.getValue()+"\n");
+                        }
+
+                        DHAPI.setHologramLines(teamhologram, lines);
+                    }
+
+                    Hologram playersHologram = DHAPI.getHologram("Players");
+                    if(playersHologram != null){
+                        ArrayList<String> playerslines = new ArrayList<>();
+                        HashMap<String ,Integer > playersclassment = SQLMethods.sortByValue(SQLMethods.doPlayerClassement());
+                        playerslines.add(ChatColor.GREEN+"Classement des joueurs");
+                        for(Map.Entry<String, Integer> mapentry : playersclassment.entrySet()){
+                            playerslines.add(ChatColor.AQUA+""+mapentry.getKey()+" : "+mapentry.getValue()+"\n");
+                        }
+
+                        DHAPI.setHologramLines(playersHologram, playerslines);
+                    }
+
+
                     if(Main.getInstance().Apolon.getEntries().contains(player.getDisplayName())){
                         SQLMethods.getTeamMoney(1);
                         if(Main.getInstance().team_money.get(1) == null){

@@ -14,7 +14,7 @@ public class OnJoin implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
-
+        String team = SQLMethods.getPlayerTeam(player);
         String welcome_msg = Main.getInstance().getConfig().getString("msg.welcome");
         welcome_msg = welcome_msg.replaceAll("%player_name%",player.getName());
         event.setJoinMessage("");
@@ -35,6 +35,20 @@ public class OnJoin implements Listener {
         }
         new Scoreboard(Main.getInstance().sm).game(player);
         player.setScoreboard(Main.getInstance().scoreboard);
+        if(team.equalsIgnoreCase("Apollon")){
+            Main.getInstance().Apolon.addEntry(player.getName());
+        }else if(team.equalsIgnoreCase("Arès")){
+            Main.getInstance().Ares.addEntry(player.getName());
+        }else if(team.equalsIgnoreCase("Poséidon")){
+            Main.getInstance().Poseidon.addEntry(player.getName());
+        }else if(team.equalsIgnoreCase("Zeus")){
+            Main.getInstance().Zeus.addEntry(player.getName());
+        }else if(team.equalsIgnoreCase("Dionysos")){
+            Main.getInstance().Dionysos.addEntry(player.getName());
+        }else {
+            return;
+        }
+
     }
 
 

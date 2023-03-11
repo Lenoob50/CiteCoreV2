@@ -1,5 +1,5 @@
 name: CiteCore
-version: 1.0.1
+version: 1.0.3
 authors:
   - Lenoob_
   - TitouLeVrai
@@ -21,4 +21,8 @@ commands:
   teams:
     description: Commande realtive au teams
     permission: core.teams.use
+    permission-message: Vous n'avez pas la permission
+  lead:
+    description: Commande relative à l'holograme du classement
+    permission: core.classement.use
     permission-message: Vous n'avez pas la permission

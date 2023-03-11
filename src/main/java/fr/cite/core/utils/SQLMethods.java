@@ -19,7 +19,7 @@ public class SQLMethods {
     public static ArrayList<String> var = new ArrayList<String>();
     public static int teams = 0;
     public static int drachmes = 0;
-
+    public static String team = "";
     static {
         try {
             connection = dbConnection.getConnection();
@@ -107,7 +107,7 @@ public class SQLMethods {
         return classement;
     }
 
-    public static HashMap doClassement(){
+    public static HashMap doTeamClassement(){
         HashMap<String,Integer> classement = new HashMap<String,Integer>();
 
 
@@ -124,6 +124,25 @@ public class SQLMethods {
 
         return classement;
     }
+
+    public static HashMap doPlayerClassement(){
+        HashMap<String,Integer> classement = new HashMap<String,Integer>();
+
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT Pseudo,Coins FROM core ORDER BY Coins ASC");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                classement.put(rs.getString("Pseudo"),rs.getInt("Coins"));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return classement;
+    }
+
 
     public static int getTotalTeam(){
         Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(),()->{
@@ -168,6 +187,20 @@ public class SQLMethods {
                 e.printStackTrace();
             }
         });
+    }
+
+    public static String getPlayerTeam(Player player){
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT Team FROM core WHERE UUID = ?");
+            preparedStatement.setString(1,player.getUniqueId().toString());
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                team = rs.getString("Team");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return team;
     }
 
 

@@ -12,8 +12,7 @@ public class CommandLeader implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(sender instanceof Player){
             Player player = (Player) sender;
-            player.sendMessage(Main.getInstance().getPrefix()+SQLMethods.sortByValue(SQLMethods.doClassement()));
-            System.out.println(Main.getInstance().team_money);
+            player.sendMessage(Main.getInstance().getPrefix()+SQLMethods.sortByValue(SQLMethods.doTeamClassement()));
         }
         return false;
     }

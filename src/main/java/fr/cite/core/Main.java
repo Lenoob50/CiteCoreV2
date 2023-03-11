@@ -1,13 +1,11 @@
 package fr.cite.core;
 
-import fr.cite.core.commands.CommandLeader;
-import fr.cite.core.commands.CommandMoney;
-import fr.cite.core.commands.CommandNPC;
-import fr.cite.core.commands.CommandTeams;
+import fr.cite.core.commands.*;
 import fr.cite.core.listeners.OnJoin;
 import fr.cite.core.listeners.OnLeave;
 import fr.cite.core.listeners.OnTalk;
 import fr.cite.core.scoreboard.ScoreboardManager;
+import fr.cite.core.tabcomplete.TabLead;
 import fr.cite.core.tabcomplete.TabMoney;
 import fr.cite.core.tabcomplete.TabNpc;
 import fr.cite.core.tabcomplete.TabTeams;
@@ -45,8 +43,7 @@ public class Main extends JavaPlugin {
     public Team Dionysos;
     public HashMap<UUID,Integer> argent = new HashMap();
     public HashMap<Integer,Integer> team_money = new HashMap<>();
-    public SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-    public  Date date = new Date();
+
 
     @Override
     public void onLoad() {
@@ -61,22 +58,6 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-            @Override
-            public void run() {
-                if(formatter.format(date).toString() == getConfig().getString("options.time.close") ){
-                    for(Player players : Bukkit.getOnlinePlayers()){
-                        if(!players.isOp()){
-                            players.kickPlayer(prefix+" Le serveur réouvre à "+getConfig().getString("options.time.close"));
-                        }
-                    }
-                    getServer().setWhitelist(true);
-                }
-                if(formatter.format(date).toString() == getConfig().getString("options.time.open") ){
-                    getServer().setWhitelist(false);
-                }
-            }
-        },20,20);
         //Déclaration de la classe principale
         instance = this;
         //Enregistrement des commmandes
@@ -87,6 +68,8 @@ public class Main extends JavaPlugin {
         getCommand("leaderboard").setExecutor(new CommandLeader());
         getCommand("teams").setExecutor(new CommandTeams());
         getCommand("teams").setTabCompleter(new TabTeams());
+        getCommand("lead").setExecutor(new CommandClassement());
+        getCommand("lead").setTabCompleter(new TabLead());
         //Connexion à la base de donnée
         databaseManager = new DatabaseManager();
         //Enregistrements des evenements relatifs au jeu
