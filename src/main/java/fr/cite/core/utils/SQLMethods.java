@@ -85,8 +85,6 @@ public class SQLMethods {
     }
 
     public static int getMoney(Player player){
-
-        Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(),()->{
            try {
                PreparedStatement preparedStatement = connection.prepareStatement("SELECT coins FROM core WHERE UUID = ?");
                preparedStatement.setString(1,player.getUniqueId().toString());
@@ -98,7 +96,6 @@ public class SQLMethods {
            }catch (SQLException e){
                e.printStackTrace();
            }
-        });
         return argent;
     }
 

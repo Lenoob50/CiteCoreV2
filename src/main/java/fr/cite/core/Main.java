@@ -1,9 +1,7 @@
 package fr.cite.core;
 
 import fr.cite.core.commands.*;
-import fr.cite.core.listeners.OnJoin;
-import fr.cite.core.listeners.OnLeave;
-import fr.cite.core.listeners.OnTalk;
+import fr.cite.core.listeners.*;
 import fr.cite.core.scoreboard.ScoreboardManager;
 import fr.cite.core.tabcomplete.TabLead;
 import fr.cite.core.tabcomplete.TabMoney;
@@ -76,6 +74,8 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new OnJoin(),this);
         pm.registerEvents(new OnLeave(),this);
         pm.registerEvents(new OnTalk(),this);
+        pm.registerEvents(new OnNPCClicked(),this);
+        pm.registerEvents(new OnInventoryInterract(),this);
         //Ajout des options au fichier de configuration
         configuration.addDefault("msg.prefix",DARK_AQUA+""+BOLD+"Cite >>"+RESET);
         configuration.addDefault("options.welcome",false);
