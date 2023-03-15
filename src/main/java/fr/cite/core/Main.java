@@ -80,11 +80,11 @@ public class Main extends JavaPlugin {
         configuration.addDefault("msg.prefix",DARK_AQUA+""+BOLD+"Cite >>"+RESET);
         configuration.addDefault("options.welcome",false);
         configuration.addDefault("msg.welcome","%player_name% "+GREEN+" à rejoins la cité pour la première fois souhaitez lui la bienvenue");
-        configuration.addDefault("mysql.host","node2.hogcraft.fr");
-        configuration.addDefault("mysql.port",3306);
-        configuration.addDefault("mysql.dbName","bdd_cite");
-        configuration.addDefault("mysql.user","bdd_cite");
-        configuration.addDefault("mysql.password","qy4_-tC]t1m0-zX2");
+        configuration.addDefault("mysql.host","host");
+        configuration.addDefault("mysql.port",0000);
+        configuration.addDefault("mysql.dbName","dbName");
+        configuration.addDefault("mysql.user","dbUser");
+        configuration.addDefault("mysql.password","password");
         configuration.addDefault("options.spawn.x",0);
         configuration.addDefault("options.spawn.y",105);
         configuration.addDefault("options.spawn.z",0);
