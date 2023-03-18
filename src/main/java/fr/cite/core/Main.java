@@ -76,6 +76,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new OnTalk(),this);
         pm.registerEvents(new OnNPCClicked(),this);
         pm.registerEvents(new OnInventoryInterract(),this);
+        pm.registerEvents(new OnNPCHurt(),this);
         //Ajout des options au fichier de configuration
         configuration.addDefault("msg.prefix",DARK_AQUA+""+BOLD+"Cite >>"+RESET);
         configuration.addDefault("options.welcome",false);

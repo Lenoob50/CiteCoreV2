@@ -25,8 +25,8 @@ fr/cite/core/inventory/InventoryManager.java
 fr/cite/core/scoreboard/FastReflection.java
  fr.cite.core.scoreboard.FastReflection
  fr.cite.core.scoreboard.FastReflection$PacketConstructor
-fr/cite/core/commands/CommandNPC.java
- fr.cite.core.commands.CommandNPC
+fr/cite/core/commands/CommandLeader.java
+ fr.cite.core.commands.CommandLeader
 fr/cite/core/utils/DatabaseManager.java
  fr.cite.core.utils.DatabaseManager
 fr/cite/core/listeners/OnNPCClicked.java
@@ -51,5 +51,5 @@ fr/cite/core/commands/CommandTeams.java
  fr.cite.core.commands.CommandTeams
 fr/cite/core/Main.java
  fr.cite.core.Main
-fr/cite/core/commands/CommandLeader.java
- fr.cite.core.commands.CommandLeader
+fr/cite/core/commands/CommandNPC.java
+ fr.cite.core.commands.CommandNPC

@@ -35,7 +35,7 @@ public class CommandNPC implements CommandExecutor {
                     npc.setCustomName(ChatColor.DARK_GREEN+"Banque");
                     npc.setCanPickupItems(false);
                     p.sendMessage(Main.getInstance().getPrefix()+ChatColor.GREEN+" L'id de l'entity est "+ChatColor.AQUA+""+npc.getEntityId());
-                    Bukkit.getWorld("world").spawnParticle(Particle.VILLAGER_HAPPY,npc.getLocation(),10);
+                    Bukkit.getWorld("world").spawnParticle(Particle.VILLAGER_HAPPY,npc.getLocation(),50);
                 }
                 if(args[0].equalsIgnoreCase("info")){
                     p.sendMessage(ChatColor.AQUA+"===========||"+ChatColor.GREEN+"NPC INFO"+ChatColor.AQUA+"||===========");
