@@ -1,5 +1,8 @@
 package fr.cite.core.utils;
 
+import eu.decentsoftware.holograms.api.DHAPI;
+import eu.decentsoftware.holograms.api.holograms.Hologram;
+import eu.decentsoftware.holograms.api.holograms.HologramLine;
 import fr.cite.core.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -200,5 +203,20 @@ public class SQLMethods {
         return team;
     }
 
-
+    public static HashMap<String, Integer> placeInLeader(){
+        int place = 0;
+        HashMap<String ,Integer> place_board = new HashMap();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT name FROM team ORDER BY Coins DESC");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                place ++;
+                place_board.put(resultSet.getString("name"),place);
+            }
+            place_board = sortByValue(place_board);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return place_board;
+    }
 }
