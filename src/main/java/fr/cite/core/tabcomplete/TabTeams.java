@@ -14,9 +14,9 @@ public class TabTeams implements TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
         if(arguments.isEmpty()) {
             arguments.add("Apollon");
-            arguments.add("Arès");
+            arguments.add("Ares");
             arguments.add("Dionysos");
-            arguments.add("Poséidon");
+            arguments.add("Poseidon");
             arguments.add("Zeus");
         }
 

@@ -219,4 +219,39 @@ public class SQLMethods {
         }
         return place_board;
     }
+    public static HashMap<String, Integer> teamLeader(String team_name){
+        HashMap<String, Integer> place_board = new HashMap<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT name,coins FROM "+team_name+" ORDER BY "+team_name+".coins DESC");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                place_board.put(resultSet.getString("name"),resultSet.getInt("coins"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return place_board;
+    }
+
+    public static void addToTeam(String team, Player player){
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO "+team+"(`uuid`, `name`, `coins`) VALUES (?,?,?)");
+            preparedStatement.setString(1,player.getUniqueId().toString());
+            preparedStatement.setString(2,player.getName());
+            preparedStatement.setInt(3,getMoney(player));
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void removeToTeam(String team, Player player){
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM "+team+" WHERE UUID = ?");
+            preparedStatement.setString(1,player.getUniqueId().toString());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

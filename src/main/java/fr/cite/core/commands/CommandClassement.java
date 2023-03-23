@@ -54,6 +54,51 @@ public class CommandClassement implements CommandExecutor {
                     }
                     Hologram classement = DHAPI.createHologram("Players",new Location(location.getWorld(),x,y,z),true,lines);
                 }
+                if(args[0].equalsIgnoreCase("Apollon")){
+                    ArrayList<String> lines = new ArrayList<>();
+                    HashMap<String, Integer> classement = SQLMethods.sortByValue(SQLMethods.teamLeader("Apollon"));
+                    lines.add(ChatColor.GREEN+"Apollon");
+                    for (Map.Entry<String,Integer> mapentry : classement.entrySet()){
+                        lines.add(ChatColor.AQUA+""+mapentry.getKey()+" : "+mapentry.getValue()+"\n");
+                    }
+                    Hologram apollon_lead = DHAPI.createHologram("Apollon",new Location(location.getWorld(),x,y,z),true,lines);
+                }
+                if(args[0].equalsIgnoreCase("Ares")){
+                    ArrayList<String> lines = new ArrayList<>();
+                    HashMap<String, Integer> classement = SQLMethods.sortByValue(SQLMethods.teamLeader("Ares"));
+                    lines.add(ChatColor.RED+"Arès");
+                    for (Map.Entry<String,Integer> mapentry : classement.entrySet()){
+                        lines.add(ChatColor.AQUA+""+mapentry.getKey()+" : "+mapentry.getValue()+"\n");
+                    }
+                    Hologram ares_lead = DHAPI.createHologram("Ares",new Location(location.getWorld(),x,y,z),true,lines);
+                }
+                if(args[0].equalsIgnoreCase("Dionysos")){
+                    ArrayList<String> lines = new ArrayList<>();
+                    HashMap<String, Integer> classement = SQLMethods.sortByValue(SQLMethods.teamLeader("Dionysos"));
+                    lines.add(ChatColor.DARK_PURPLE+"Dionysos");
+                    for (Map.Entry<String,Integer> mapentry : classement.entrySet()){
+                        lines.add(ChatColor.AQUA+""+mapentry.getKey()+" : "+mapentry.getValue()+"\n");
+                    }
+                    Hologram apollon_lead = DHAPI.createHologram("Dionysos",new Location(location.getWorld(),x,y,z),true,lines);
+                }
+                if(args[0].equalsIgnoreCase("Poseidon")){
+                    ArrayList<String> lines = new ArrayList<>();
+                    HashMap<String, Integer> classement = SQLMethods.sortByValue(SQLMethods.teamLeader("Poseidon"));
+                    lines.add(ChatColor.AQUA+"Poséidon");
+                    for (Map.Entry<String,Integer> mapentry : classement.entrySet()){
+                        lines.add(ChatColor.AQUA+""+mapentry.getKey()+" : "+mapentry.getValue()+"\n");
+                    }
+                    Hologram apollon_lead = DHAPI.createHologram("Poseidon",new Location(location.getWorld(),x,y,z),true,lines);
+                }
+                if(args[0].equalsIgnoreCase("Zeus")){
+                    ArrayList<String> lines = new ArrayList<>();
+                    HashMap<String, Integer> classement = SQLMethods.sortByValue(SQLMethods.teamLeader("Zeus"));
+                    lines.add(ChatColor.GOLD+"Zeus");
+                    for (Map.Entry<String,Integer> mapentry : classement.entrySet()){
+                        lines.add(ChatColor.AQUA+""+mapentry.getKey()+" : "+mapentry.getValue()+"\n");
+                    }
+                    Hologram apollon_lead = DHAPI.createHologram("Zeus",new Location(location.getWorld(),x,y,z),true,lines);
+                }
             }
         }
         return false;

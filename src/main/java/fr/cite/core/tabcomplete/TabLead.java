@@ -16,6 +16,11 @@ public class TabLead implements TabCompleter {
             arguments.add("remove");
             arguments.add("team");
             arguments.add("players");
+            arguments.add("Apollon");
+            arguments.add("Ares");
+            arguments.add("Dionysos");
+            arguments.add("Poseidon");
+            arguments.add("Zeus");
         }
 
         List<String> result = new ArrayList<String>();

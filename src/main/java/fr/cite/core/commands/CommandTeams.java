@@ -18,12 +18,28 @@ public class CommandTeams implements CommandExecutor {
             if(args.length == 0){
                 player.sendMessage(Main.getInstance().getPrefix()+" Il vous faut au moins un argument");
             }else{
+                SQLMethods.addToTeam(args[0],target);
+                if(Main.getInstance().Apolon.getEntries().contains(target.getDisplayName())){
+                    SQLMethods.removeToTeam("Apollon",target);
+                }
+                if(Main.getInstance().Ares.getEntries().contains(target.getDisplayName())){
+                    SQLMethods.removeToTeam("Ares",target);
+                }
+                if(Main.getInstance().Dionysos.getEntries().contains(target.getDisplayName())){
+                    SQLMethods.removeToTeam("Dionysos",target);
+                }
+                if(Main.getInstance().Poseidon.getEntries().contains(target.getDisplayName())){
+                    SQLMethods.removeToTeam("Poseidon",target);
+                }
+                if(Main.getInstance().Zeus.getEntries().contains(target.getDisplayName())){
+                    SQLMethods.removeToTeam("Zeus",target);
+                }
                 if(args[0].equalsIgnoreCase("Apollon")){
                     Main.getInstance().Apolon.addEntry(target.getDisplayName());
                     player.sendMessage(Main.getInstance().getPrefix()+""+target.getName()+" à été ajouté à la team "+Main.getInstance().scoreboard.getEntryTeam(target.getName()).getName());
                     SQLMethods.setTeams(target);
                 }
-                if(args[0].equalsIgnoreCase("Arès")){
+                if(args[0].equalsIgnoreCase("Ares")){
                     Main.getInstance().Ares.addEntry(target.getDisplayName());
                     player.sendMessage(Main.getInstance().getPrefix()+""+target.getName()+" à été ajouté à la team "+Main.getInstance().scoreboard.getEntryTeam(target.getName()).getName());
                     SQLMethods.setTeams(target);
@@ -33,7 +49,7 @@ public class CommandTeams implements CommandExecutor {
                     player.sendMessage(Main.getInstance().getPrefix()+""+target.getName()+" à été ajouté à la team "+Main.getInstance().scoreboard.getEntryTeam(target.getName()).getName());
                     SQLMethods.setTeams(target);
                 }
-                if(args[0].equalsIgnoreCase("Poséidon")){
+                if(args[0].equalsIgnoreCase("Poseidon")){
                     Main.getInstance().Poseidon.addEntry(target.getDisplayName());
                     player.sendMessage(Main.getInstance().getPrefix()+""+target.getName()+" à été ajouté à la team "+Main.getInstance().scoreboard.getEntryTeam(target.getName()).getName());
                     SQLMethods.setTeams(target);

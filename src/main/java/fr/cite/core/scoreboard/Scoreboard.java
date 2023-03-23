@@ -75,6 +75,65 @@ public class Scoreboard {
 
                         DHAPI.setHologramLines(playersHologram, playerslines);
                     }
+                    Hologram apollonHologram = DHAPI.getHologram("Apollon");
+                    if(apollonHologram != null){
+                        ArrayList<String> playerslines = new ArrayList<>();
+                        HashMap<String ,Integer > playersclassment = SQLMethods.sortByValue(SQLMethods.teamLeader("Apollon"));
+                        playerslines.add(ChatColor.GREEN+"Apollon");
+                        for(Map.Entry<String, Integer> mapentry : playersclassment.entrySet()){
+                            playerslines.add(ChatColor.AQUA+""+mapentry.getKey()+" : "+mapentry.getValue()+"\n");
+                        }
+
+                        DHAPI.setHologramLines(apollonHologram, playerslines);
+                    }
+                    Hologram AresHologram = DHAPI.getHologram("Ares");
+                    if(AresHologram != null){
+                        ArrayList<String> playerslines = new ArrayList<>();
+                        HashMap<String ,Integer > playersclassment = SQLMethods.sortByValue(SQLMethods.teamLeader("Ares"));
+                        playerslines.add(ChatColor.RED+"Arès");
+                        for(Map.Entry<String, Integer> mapentry : playersclassment.entrySet()){
+                            playerslines.add(ChatColor.AQUA+""+mapentry.getKey()+" : "+mapentry.getValue()+"\n");
+                        }
+
+                        DHAPI.setHologramLines(AresHologram, playerslines);
+                    }
+                    Hologram poseidonHologram = DHAPI.getHologram("Poseidon");
+                    if(poseidonHologram != null){
+                        ArrayList<String> playerslines = new ArrayList<>();
+                        HashMap<String ,Integer > playersclassment = SQLMethods.sortByValue(SQLMethods.teamLeader("Poseidon"));
+                        playerslines.add(AQUA+"Poséidon");
+                        for(Map.Entry<String, Integer> mapentry : playersclassment.entrySet()){
+                            playerslines.add(ChatColor.AQUA+""+mapentry.getKey()+" : "+mapentry.getValue()+"\n");
+                        }
+
+                        DHAPI.setHologramLines(poseidonHologram, playerslines);
+                    }
+                    Hologram zeusHologram = DHAPI.getHologram("Zeus");
+                    if(zeusHologram != null){
+                        ArrayList<String> playerslines = new ArrayList<>();
+                        HashMap<String ,Integer > playersclassment = SQLMethods.sortByValue(SQLMethods.teamLeader("Zeus"));
+                        playerslines.add(GOLD+"Zeus");
+                        for(Map.Entry<String, Integer> mapentry : playersclassment.entrySet()){
+                            playerslines.add(ChatColor.AQUA+""+mapentry.getKey()+" : "+mapentry.getValue()+"\n");
+                        }
+
+                        DHAPI.setHologramLines(zeusHologram, playerslines);
+                    }
+                    Hologram dionysosHologram = DHAPI.getHologram("Dionysos");
+                    if(dionysosHologram != null){
+                        ArrayList<String> playerslines = new ArrayList<>();
+                        HashMap<String ,Integer > playersclassment = SQLMethods.sortByValue(SQLMethods.teamLeader("Dionysos"));
+                        playerslines.add(DARK_PURPLE+"Dionysos");
+                        for(Map.Entry<String, Integer> mapentry : playersclassment.entrySet()){
+                            playerslines.add(ChatColor.AQUA+""+mapentry.getKey()+" : "+mapentry.getValue()+"\n");
+                        }
+
+                        DHAPI.setHologramLines(dionysosHologram, playerslines);
+                    }
+
+
+
+
 
 
                     if(Main.getInstance().Apolon.getEntries().contains(player.getDisplayName())){
