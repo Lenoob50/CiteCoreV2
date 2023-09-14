@@ -37,6 +37,71 @@ public class CommandNPC implements CommandExecutor {
                     p.sendMessage(Main.getInstance().getPrefix()+ChatColor.GREEN+" L'id de l'entity est "+ChatColor.AQUA+""+npc.getEntityId());
                     Bukkit.getWorld("world").spawnParticle(Particle.VILLAGER_HAPPY,npc.getLocation(),50);
                 }
+                if(args[0].equalsIgnoreCase("Blocks")){
+                    Villager npc = (Villager) playerLoc.getWorld().spawnEntity(playerLoc,EntityType.VILLAGER);
+                    npc.setVillagerType(Villager.Type.PLAINS);
+                    npc.setProfession(Villager.Profession.FARMER);
+                    npc.setInvulnerable(true);
+                    npc.setAI(false);
+                    npc.setVillagerLevel(4);
+                    npc.setCustomName(ChatColor.DARK_AQUA+"Block");
+                    npc.setCustomNameVisible(true);
+                    npc.setCanPickupItems(false);
+                    p.sendMessage(Main.getInstance().getPrefix()+ChatColor.GREEN+" L'id de l'entity est "+ChatColor.AQUA+""+npc.getEntityId());
+                    Bukkit.getWorld("world").spawnParticle(Particle.VILLAGER_HAPPY,npc.getLocation(),50);
+                }
+                if(args[0].equalsIgnoreCase("Food")){
+                    Villager npc = (Villager) playerLoc.getWorld().spawnEntity(playerLoc,EntityType.VILLAGER);
+                    npc.setVillagerType(Villager.Type.PLAINS);
+                    npc.setProfession(Villager.Profession.FARMER);
+                    npc.setInvulnerable(true);
+                    npc.setAI(false);
+                    npc.setVillagerLevel(4);
+                    npc.setCustomName(ChatColor.DARK_AQUA+"Nourriture");
+                    npc.setCustomNameVisible(true);
+                    npc.setCanPickupItems(false);
+                    p.sendMessage(Main.getInstance().getPrefix()+ChatColor.GREEN+" L'id de l'entity est "+ChatColor.AQUA+""+npc.getEntityId());
+                    Bukkit.getWorld("world").spawnParticle(Particle.VILLAGER_HAPPY,npc.getLocation(),50);
+                }
+                if(args[0].equalsIgnoreCase("Divers")){
+                    Villager npc = (Villager) playerLoc.getWorld().spawnEntity(playerLoc,EntityType.VILLAGER);
+                    npc.setVillagerType(Villager.Type.PLAINS);
+                    npc.setProfession(Villager.Profession.FARMER);
+                    npc.setInvulnerable(true);
+                    npc.setAI(false);
+                    npc.setVillagerLevel(4);
+                    npc.setCustomName(ChatColor.DARK_AQUA+"Divers");
+                    npc.setCustomNameVisible(true);
+                    npc.setCanPickupItems(false);
+                    p.sendMessage(Main.getInstance().getPrefix()+ChatColor.GREEN+" L'id de l'entity est "+ChatColor.AQUA+""+npc.getEntityId());
+                    Bukkit.getWorld("world").spawnParticle(Particle.VILLAGER_HAPPY,npc.getLocation(),50);
+                }
+                if(args[0].equalsIgnoreCase("Ressources")){
+                    Villager npc = (Villager) playerLoc.getWorld().spawnEntity(playerLoc,EntityType.VILLAGER);
+                    npc.setVillagerType(Villager.Type.PLAINS);
+                    npc.setProfession(Villager.Profession.FARMER);
+                    npc.setInvulnerable(true);
+                    npc.setAI(false);
+                    npc.setVillagerLevel(4);
+                    npc.setCustomName(ChatColor.DARK_AQUA+"Ressources");
+                    npc.setCustomNameVisible(true);
+                    npc.setCanPickupItems(false);
+                    p.sendMessage(Main.getInstance().getPrefix()+ChatColor.GREEN+" L'id de l'entity est "+ChatColor.AQUA+""+npc.getEntityId());
+                    Bukkit.getWorld("world").spawnParticle(Particle.VILLAGER_HAPPY,npc.getLocation(),50);
+                }
+                if(args[0].equalsIgnoreCase("Item")){
+                    Villager npc = (Villager) playerLoc.getWorld().spawnEntity(playerLoc,EntityType.VILLAGER);
+                    npc.setVillagerType(Villager.Type.PLAINS);
+                    npc.setProfession(Villager.Profession.FARMER);
+                    npc.setInvulnerable(true);
+                    npc.setAI(false);
+                    npc.setVillagerLevel(4);
+                    npc.setCustomName(ChatColor.DARK_AQUA+"Item");
+                    npc.setCustomNameVisible(true);
+                    npc.setCanPickupItems(false);
+                    p.sendMessage(Main.getInstance().getPrefix()+ChatColor.GREEN+" L'id de l'entity est "+ChatColor.AQUA+""+npc.getEntityId());
+                    Bukkit.getWorld("world").spawnParticle(Particle.VILLAGER_HAPPY,npc.getLocation(),50);
+                }
                 if(args[0].equalsIgnoreCase("info")){
                     p.sendMessage(ChatColor.AQUA+"===========||"+ChatColor.GREEN+"NPC INFO"+ChatColor.AQUA+"||===========");
                     p.sendMessage(ChatColor.AQUA+"Banque : "+ChatColor.GREEN+" Permet de faire spawn le pnj "+ChatColor.AQUA+"Banquier");
@@ -45,10 +110,11 @@ public class CommandNPC implements CommandExecutor {
                     p.sendMessage(ChatColor.AQUA+"Divers : "+ChatColor.GREEN+" Permet de faire spawn le pnj "+ChatColor.AQUA+"Divers");
                     p.sendMessage(ChatColor.AQUA+"Ressources : "+ChatColor.GREEN+" Permet de faire spawn le pnj "+ChatColor.AQUA+"Ressources");
                     p.sendMessage(ChatColor.AQUA+"Item : "+ChatColor.GREEN+" Permet de faire spawn le pnj "+ChatColor.AQUA+"Items");
+                    p.sendMessage(ChatColor.AQUA+"Quete : "+ChatColor.GREEN+" Permet de faire spawn le pnj "+ChatColor.AQUA+" Quetes");
                     p.sendMessage(ChatColor.AQUA+"===========||"+ChatColor.GREEN+"NPC INFO"+ChatColor.AQUA+"||===========");
                 }
                 if(args[0].equalsIgnoreCase("remove")){
-                    p.getLocation().getWorld().getEntities().remove(args[1]);
+                    Main.getInstance().getServer().dispatchCommand(sender,"kill @e[type=minecraft:villager,distance=..10]");
                 }
             }
         }

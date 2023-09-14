@@ -18,7 +18,16 @@ public class CommandTeams implements CommandExecutor {
             if(args.length == 0){
                 player.sendMessage(Main.getInstance().getPrefix()+" Il vous faut au moins un argument");
             }else{
-                SQLMethods.addToTeam(args[0],target);
+
+                if(args[0].equalsIgnoreCase("Ar√®s") ){
+                    SQLMethods.addToTeam(args[0].replace("Ar√®s","Ares"),target);
+                }
+                else if(args[0].equalsIgnoreCase("Pos√©idon")){
+                    SQLMethods.addToTeam(args[0].replace("Pos√©idon","Poseidon"),target);
+                }
+                else {
+                    SQLMethods.addToTeam(args[0],target);
+                }
                 if(Main.getInstance().Apolon.getEntries().contains(target.getDisplayName())){
                     SQLMethods.removeToTeam("Apollon",target);
                 }
@@ -36,27 +45,30 @@ public class CommandTeams implements CommandExecutor {
                 }
                 if(args[0].equalsIgnoreCase("Apollon")){
                     Main.getInstance().Apolon.addEntry(target.getDisplayName());
-                    player.sendMessage(Main.getInstance().getPrefix()+""+target.getName()+" ‡ ÈtÈ ajoutÈ ‡ la team "+Main.getInstance().scoreboard.getEntryTeam(target.getName()).getName());
+                    System.out.println(Main.getInstance().scoreboard);
+                    System.out.println(args[1]);
+                    System.out.println(Main.getInstance().Apolon.getEntries());
+                    player.sendMessage(Main.getInstance().getPrefix()+""+target.getName()+" √† √©t√© ajout√© √† la team "+Main.getInstance().scoreboard.getPlayerTeam(target).getName());
                     SQLMethods.setTeams(target);
                 }
-                if(args[0].equalsIgnoreCase("Ares")){
+                if(args[0].equalsIgnoreCase("Ar√®s")){
                     Main.getInstance().Ares.addEntry(target.getDisplayName());
-                    player.sendMessage(Main.getInstance().getPrefix()+""+target.getName()+" ‡ ÈtÈ ajoutÈ ‡ la team "+Main.getInstance().scoreboard.getEntryTeam(target.getName()).getName());
+                    player.sendMessage(Main.getInstance().getPrefix()+""+target.getName()+" √† √©t√© ajout√© √† la team "+Main.getInstance().scoreboard.getEntryTeam(target.getName()).getName());
                     SQLMethods.setTeams(target);
                 }
                 if(args[0].equalsIgnoreCase("Dionysos")){
                     Main.getInstance().Dionysos.addEntry(target.getDisplayName());
-                    player.sendMessage(Main.getInstance().getPrefix()+""+target.getName()+" ‡ ÈtÈ ajoutÈ ‡ la team "+Main.getInstance().scoreboard.getEntryTeam(target.getName()).getName());
+                    player.sendMessage(Main.getInstance().getPrefix()+""+target.getName()+" √† √©t√© ajout√© √† la team "+Main.getInstance().scoreboard.getEntryTeam(target.getName()).getName());
                     SQLMethods.setTeams(target);
                 }
-                if(args[0].equalsIgnoreCase("Poseidon")){
+                if(args[0].equalsIgnoreCase("Pos√©idon")){
                     Main.getInstance().Poseidon.addEntry(target.getDisplayName());
-                    player.sendMessage(Main.getInstance().getPrefix()+""+target.getName()+" ‡ ÈtÈ ajoutÈ ‡ la team "+Main.getInstance().scoreboard.getEntryTeam(target.getName()).getName());
+                    player.sendMessage(Main.getInstance().getPrefix()+""+target.getName()+" √† √©t√© ajout√© √† la team "+Main.getInstance().scoreboard.getEntryTeam(target.getName()).getName());
                     SQLMethods.setTeams(target);
                 }
                 if(args[0].equalsIgnoreCase("Zeus")){
                     Main.getInstance().Zeus.addEntry(target.getDisplayName());
-                    player.sendMessage(Main.getInstance().getPrefix()+""+target.getName()+" ‡ ÈtÈ ajoutÈ ‡ la team "+Main.getInstance().scoreboard.getEntryTeam(target.getName()).getName());
+                    player.sendMessage(Main.getInstance().getPrefix()+""+target.getName()+" √† √©t√© ajout√© √† la team "+Main.getInstance().scoreboard.getEntryTeam(target.getName()).getName());
                     SQLMethods.setTeams(target);
                 }
             }

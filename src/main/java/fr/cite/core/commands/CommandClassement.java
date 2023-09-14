@@ -26,7 +26,7 @@ public class CommandClassement implements CommandExecutor {
             int y = location.getBlockY() +3;
             int z = location.getBlockZ();
             if(args.length == 0){
-                player.sendMessage(Main.getInstance().getPrefix()+"Vous devez précisser un argument");
+                player.sendMessage(Main.getInstance().getPrefix()+"Vous devez prÃ©cisser un argument");
             }else if(args.length >=1){
                 if(args[0].equalsIgnoreCase("remove")){
                     Hologram hologram = DHAPI.getHologram(args[1]);
@@ -39,7 +39,7 @@ public class CommandClassement implements CommandExecutor {
                 if(args[0].equalsIgnoreCase("team")){
                     ArrayList<String> lines = new ArrayList<>();
                     HashMap<String ,Integer > classment = SQLMethods.sortByValue(SQLMethods.doTeamClassement());
-                    lines.add(ChatColor.GREEN+"Classement des équipes");
+                    lines.add(ChatColor.GREEN+"Classement des Ã©quipes");
                     for(Map.Entry<String, Integer> mapentry : classment.entrySet()){
                         lines.add(ChatColor.AQUA+""+mapentry.getKey()+" : "+mapentry.getValue()+"\n");
                     }
@@ -66,7 +66,7 @@ public class CommandClassement implements CommandExecutor {
                 if(args[0].equalsIgnoreCase("Ares")){
                     ArrayList<String> lines = new ArrayList<>();
                     HashMap<String, Integer> classement = SQLMethods.sortByValue(SQLMethods.teamLeader("Ares"));
-                    lines.add(ChatColor.RED+"Arès");
+                    lines.add(ChatColor.RED+"ArÃ¨s");
                     for (Map.Entry<String,Integer> mapentry : classement.entrySet()){
                         lines.add(ChatColor.AQUA+""+mapentry.getKey()+" : "+mapentry.getValue()+"\n");
                     }
@@ -84,7 +84,7 @@ public class CommandClassement implements CommandExecutor {
                 if(args[0].equalsIgnoreCase("Poseidon")){
                     ArrayList<String> lines = new ArrayList<>();
                     HashMap<String, Integer> classement = SQLMethods.sortByValue(SQLMethods.teamLeader("Poseidon"));
-                    lines.add(ChatColor.AQUA+"Poséidon");
+                    lines.add(ChatColor.AQUA+"PosÃ©idon");
                     for (Map.Entry<String,Integer> mapentry : classement.entrySet()){
                         lines.add(ChatColor.AQUA+""+mapentry.getKey()+" : "+mapentry.getValue()+"\n");
                     }

@@ -26,3 +26,7 @@ commands:
     description: Commande relative à l'holograme du classement
     permission: core.classement.use
     permission-message: Vous n'avez pas la permission
+  teammoney:
+    description: Commande relative à l'argent d'une team
+    permission: core.money.use
+    permission-message: Vous n'avez pas la permission

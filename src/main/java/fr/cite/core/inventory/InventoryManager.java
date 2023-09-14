@@ -13,10 +13,18 @@ import static org.bukkit.ChatColor.*;
 public class InventoryManager {
 
 	public Inventory Banque;
+	public Inventory Food;
 
 	
 	 public InventoryManager(){
 		 	Banque();
+		 	Food();
+	 }
+
+	 public void Food(){
+	 	Inventory invt = Bukkit.createInventory(null,6*9, AQUA+"Vendeur de Nourriture");
+	 	ItemStack steak = new ItemStack(Material.COOKED_BEEF,1);
+
 	 }
 
 	public void Banque(){
@@ -24,13 +32,13 @@ public class InventoryManager {
 
 	        ItemStack ems = new ItemStack(Material.EMERALD,1);
 	        ItemMeta emsM = ems.getItemMeta();
-			emsM.setDisplayName(GREEN+"Déposer des Emeraudes");
+			emsM.setDisplayName(GREEN+"DÃ©poser des Emeraudes");
 			ems.setItemMeta(emsM);
 
 
 			ItemStack emsblock = new ItemStack(Material.EMERALD_BLOCK,1);
 			ItemMeta emsblockM = emsblock.getItemMeta();
-			emsblockM.setDisplayName(GREEN+"Déposer des blocks d'emeraude");
+			emsblockM.setDisplayName(GREEN+"DÃ©poser des blocks d'emeraude");
 			emsblock.setItemMeta(emsblockM);
 
 			invt.setItem(12,ems);

@@ -3,6 +3,7 @@ package fr.cite.core.listeners;
 import com.sun.org.apache.regexp.internal.RE;
 import fr.cite.core.Main;
 import fr.cite.core.utils.SQLMethods;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -12,6 +13,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scoreboard.Team;
 
 import java.util.Map;
 
@@ -28,26 +30,45 @@ public class OnInventoryInterract implements Listener {
         if(p.getOpenInventory().getTitle().equalsIgnoreCase(ChatColor.AQUA+"Banque")){
             event.setCancelled(true);
             if(clickedItem.getType().equals(Material.EMERALD)){
-                if(clickedItem.getItemMeta().getDisplayName().equalsIgnoreCase(GREEN+"DÈposer des Emeraudes")){
+                if(clickedItem.getItemMeta().getDisplayName().equalsIgnoreCase(GREEN+"D√©poser des Emeraudes")){
                     if(p.getInventory().contains(Material.EMERALD)){
                         for(Map.Entry<Integer, ? extends ItemStack> mapentry : p.getInventory().all(Material.EMERALD).entrySet()){
                             ems = ems + mapentry.getValue().getAmount();
                         }
                         SQLMethods.addCoins(p,ems*1);
-                        p.sendMessage(Main.getInstance().getPrefix()+"Votre compte ‡ ÈtÈ crÈditÈ de "+AQUA+ems+ RESET+" drachmes");
+                        p.sendMessage(Main.getInstance().getPrefix()+"Votre compte √† √©t√© cr√©dit√© de "+AQUA+ems+ RESET+" drachmes");
                         p.getInventory().remove(Material.EMERALD);
+                        SQLMethods.addTeamCoins(ems*1,p);
+                        if(Main.getInstance().scoreboard.getEntryTeam(p.getDisplayName()).getName().equalsIgnoreCase("Ar√®s")){
+                            SQLMethods.addCoinsPerTeam(Main.getInstance().scoreboard.getEntryTeam(p.getDisplayName()).getName().replace("Ar√®s","Ares"),p);
+                        }
+                        if(Main.getInstance().scoreboard.getEntryTeam(p.getDisplayName()).getName().equalsIgnoreCase("Pos√©idon")){
+                            SQLMethods.addCoinsPerTeam(Main.getInstance().scoreboard.getEntryTeam(p.getDisplayName()).getName().replace("Pos√©idon","Poseidon"),p);
+                        }else{
+                            SQLMethods.addCoinsPerTeam(Main.getInstance().scoreboard.getEntryTeam(p.getDisplayName()).getName(),p);
+                        }
+
 
                 }
                 }
             }else if(clickedItem.getType().equals(Material.EMERALD_BLOCK)) {
-                if (clickedItem.getItemMeta().getDisplayName().equalsIgnoreCase(GREEN + "DÈposer des blocks d'emeraude")) {
+                if (clickedItem.getItemMeta().getDisplayName().equalsIgnoreCase(GREEN + "D√©poser des blocks d'emeraude")) {
                     if (p.getInventory().contains(Material.EMERALD_BLOCK)) {
                         for(Map.Entry<Integer, ? extends ItemStack> mapentry : p.getInventory().all(Material.EMERALD_BLOCK).entrySet()){
                             ems = ems + mapentry.getValue().getAmount();
                         }
-                        p.sendMessage(Main.getInstance().getPrefix() + "Votre compte ‡ ÈtÈ crÈditÈ de " + AQUA + ems*9 + RESET + " drachmes");
+                        p.sendMessage(Main.getInstance().getPrefix() + "Votre compte √† √©t√© cr√©dit√© de " + AQUA + ems*9 + RESET + " drachmes");
                         SQLMethods.addCoins(p, ems * 9);
                         p.getInventory().remove(Material.EMERALD_BLOCK);
+                        SQLMethods.addTeamCoins(ems*9,p);
+                        if(Main.getInstance().scoreboard.getEntryTeam(p.getDisplayName()).getName().equalsIgnoreCase("Ar√®s")){
+                            SQLMethods.addCoinsPerTeam(Main.getInstance().scoreboard.getEntryTeam(p.getDisplayName()).getName().replace("Ar√®s","Ares"),p);
+                        }
+                        if(Main.getInstance().scoreboard.getEntryTeam(p.getDisplayName()).getName().equalsIgnoreCase("Pos√©idon")){
+                            SQLMethods.addCoinsPerTeam(Main.getInstance().scoreboard.getEntryTeam(p.getDisplayName()).getName().replace("Pos√©idon","Poseidon"),p);
+                        }else{
+                            SQLMethods.addCoinsPerTeam(Main.getInstance().scoreboard.getEntryTeam(p.getDisplayName()).getName(),p);
+                        }
                     }
                 }
             }

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/src/main/java/fr/cite/core/Main.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/java/fr/cite/core/commands/CommandClassement.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/java/fr/cite/core/commands/CommandTeams.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/java/fr/cite/core/inventory/InventoryManager.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/java/fr/cite/core/listeners/OnInventoryInterract.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/cite/core/Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/cite/core/commands/CommandClassement.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/cite/core/commands/CommandTeams.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/cite/core/inventory/InventoryManager.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/cite/core/listeners/OnInventoryInterract.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/fr/cite/core/scoreboard/FastBoard.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/main/java/fr/cite/core/scoreboard/FastReflection.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/java/fr/cite/core/scoreboard/Scoreboard.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/cite/core/scoreboard/Scoreboard.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/fr/cite/core/scoreboard/ScoreboardManager.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/src/main/java/fr/cite/core/tabcomplete/TabTeams.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/java/fr/cite/core/tabcomplete/TabTeams.java" charset="UTF-8" />
   </component>
 </project>

@@ -2,8 +2,12 @@ plugins {
     id 'java'
 }
 
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
 group 'fr.cite'
-version 'alpha-1.1.2'
+version 'alpha-1.1.4'
 
 repositories {
     mavenCentral()

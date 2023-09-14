@@ -22,7 +22,7 @@ public class Scoreboard {
 
     public void game(Player player) {
         scoreboardManager.createBoard(player, fastBoard -> {
-            fastBoard.updateTitle(GREEN+""+BOLD+"Cité");
+            fastBoard.updateTitle(GREEN+""+BOLD+"CitÃ©");
 
             Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
                 @Override
@@ -56,7 +56,7 @@ public class Scoreboard {
                     if(teamhologram != null){
                         ArrayList<String> lines = new ArrayList<>();
                         HashMap<String ,Integer > classment = SQLMethods.sortByValue(SQLMethods.doTeamClassement());
-                        lines.add(ChatColor.GREEN+"Classement des équipes");
+                        lines.add(ChatColor.GREEN+"Classement des Ã©quipes");
                         for(Map.Entry<String, Integer> mapentry : classment.entrySet()){
                             lines.add(ChatColor.AQUA+""+mapentry.getKey()+" : "+mapentry.getValue()+"\n");
                         }
@@ -90,7 +90,7 @@ public class Scoreboard {
                     if(AresHologram != null){
                         ArrayList<String> playerslines = new ArrayList<>();
                         HashMap<String ,Integer > playersclassment = SQLMethods.sortByValue(SQLMethods.teamLeader("Ares"));
-                        playerslines.add(ChatColor.RED+"Arès");
+                        playerslines.add(ChatColor.RED+"ArÃ¨s");
                         for(Map.Entry<String, Integer> mapentry : playersclassment.entrySet()){
                             playerslines.add(ChatColor.AQUA+""+mapentry.getKey()+" : "+mapentry.getValue()+"\n");
                         }
@@ -101,7 +101,7 @@ public class Scoreboard {
                     if(poseidonHologram != null){
                         ArrayList<String> playerslines = new ArrayList<>();
                         HashMap<String ,Integer > playersclassment = SQLMethods.sortByValue(SQLMethods.teamLeader("Poseidon"));
-                        playerslines.add(AQUA+"Poséidon");
+                        playerslines.add(AQUA+"PosÃ©idon");
                         for(Map.Entry<String, Integer> mapentry : playersclassment.entrySet()){
                             playerslines.add(ChatColor.AQUA+""+mapentry.getKey()+" : "+mapentry.getValue()+"\n");
                         }
@@ -137,47 +137,47 @@ public class Scoreboard {
 
 
                     if(Main.getInstance().Apolon.getEntries().contains(player.getDisplayName())){
-                        SQLMethods.getTeamMoney(1);
-                        if(Main.getInstance().team_money.get(1) == null){
-                            fastBoard.updateLine(2,WHITE+"  0 Drachmes");
-                        }else {
-                            fastBoard.updateLine(2,WHITE+"  "+Main.getInstance().team_money.get(1)+" Drachmes");
-                        }
-                        fastBoard.updateLine(8,"  "+SQLMethods.placeInLeader().get("Apollon").toString()+"/"+SQLMethods.getTotalTeam());
-                        fastBoard.updateLine(1,AQUA+"Apollon");
-                    }else if(Main.getInstance().Ares.getEntries().contains(player.getDisplayName())){
                         SQLMethods.getTeamMoney(2);
                         if(Main.getInstance().team_money.get(2) == null){
                             fastBoard.updateLine(2,WHITE+"  0 Drachmes");
                         }else {
                             fastBoard.updateLine(2,WHITE+"  "+Main.getInstance().team_money.get(2)+" Drachmes");
                         }
-                        fastBoard.updateLine(1,AQUA+"Arès");
-                        fastBoard.updateLine(8,"  "+SQLMethods.placeInLeader().get("Arès").toString()+"/"+SQLMethods.getTotalTeam());
-                    }else if(Main.getInstance().Dionysos.getEntries().contains(player.getDisplayName())){
-                        SQLMethods.getTeamMoney(5);
-                        if(Main.getInstance().team_money.get(5) == null){
+                        fastBoard.updateLine(8,"  "+SQLMethods.placeInLeader().get("Apollon").toString()+"/"+SQLMethods.getTotalTeam());
+                        fastBoard.updateLine(1,AQUA+"Apollon");
+                    }else if(Main.getInstance().Ares.getEntries().contains(player.getDisplayName())){
+                        SQLMethods.getTeamMoney(1);
+                        if(Main.getInstance().team_money.get(1) == null){
                             fastBoard.updateLine(2,WHITE+"  0 Drachmes");
                         }else {
-                            fastBoard.updateLine(2,WHITE+"  "+Main.getInstance().team_money.get(5)+" Drachmes");
+                            fastBoard.updateLine(2,WHITE+"  "+Main.getInstance().team_money.get(1)+" Drachmes");
                         }
-                        fastBoard.updateLine(1,AQUA+"Dionysos");
-                        fastBoard.updateLine(8,"  "+SQLMethods.placeInLeader().get("Dionysos").toString()+"/"+SQLMethods.getTotalTeam());
-                    }else if(Main.getInstance().Poseidon.getEntries().contains(player.getDisplayName())){
+                        fastBoard.updateLine(1,AQUA+"ArÃ¨s");
+                        fastBoard.updateLine(8,"  "+SQLMethods.placeInLeader().get("ArÃ¨s").toString()+"/"+SQLMethods.getTotalTeam());
+                    }else if(Main.getInstance().Dionysos.getEntries().contains(player.getDisplayName())){
                         SQLMethods.getTeamMoney(3);
                         if(Main.getInstance().team_money.get(3) == null){
                             fastBoard.updateLine(2,WHITE+"  0 Drachmes");
                         }else {
                             fastBoard.updateLine(2,WHITE+"  "+Main.getInstance().team_money.get(3)+" Drachmes");
                         }
-                        fastBoard.updateLine(1,AQUA+"Poséidon");
-                        fastBoard.updateLine(8,"  "+SQLMethods.placeInLeader().get("Poséidon").toString()+"/"+SQLMethods.getTotalTeam());
-                    }else if(Main.getInstance().Zeus.getEntries().contains(player.getDisplayName())){
+                        fastBoard.updateLine(1,AQUA+"Dionysos");
+                        fastBoard.updateLine(8,"  "+SQLMethods.placeInLeader().get("Dionysos").toString()+"/"+SQLMethods.getTotalTeam());
+                    }else if(Main.getInstance().Poseidon.getEntries().contains(player.getDisplayName())){
                         SQLMethods.getTeamMoney(4);
-                        if(Main.getInstance().team_money.get(4)==null){
+                        if(Main.getInstance().team_money.get(4) == null){
                             fastBoard.updateLine(2,WHITE+"  0 Drachmes");
                         }else {
                             fastBoard.updateLine(2,WHITE+"  "+Main.getInstance().team_money.get(4)+" Drachmes");
+                        }
+                        fastBoard.updateLine(1,AQUA+"PosÃ©idon");
+                        fastBoard.updateLine(8,"  "+SQLMethods.placeInLeader().get("PosÃ©idon").toString()+"/"+SQLMethods.getTotalTeam());
+                    }else if(Main.getInstance().Zeus.getEntries().contains(player.getDisplayName())){
+                        SQLMethods.getTeamMoney(5);
+                        if(Main.getInstance().team_money.get(5)==null){
+                            fastBoard.updateLine(2,WHITE+"  0 Drachmes");
+                        }else {
+                            fastBoard.updateLine(2,WHITE+"  "+Main.getInstance().team_money.get(5)+" Drachmes");
                         }
                         fastBoard.updateLine(1,AQUA+"Zeus");
                         fastBoard.updateLine(8,"  "+SQLMethods.placeInLeader().get("Zeus").toString()+"/"+SQLMethods.getTotalTeam());

@@ -75,7 +75,6 @@ public class SQLMethods {
     public static void addCoins(Player player, int coins){
         int ancien = getMoney(player);
         int nv = coins+ancien;
-        Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(),()->{
             try {
               PreparedStatement preparedStatement = connection.prepareStatement("UPDATE core SET coins = ? WHERE UUID = ?");
               preparedStatement.setInt(1,nv);
@@ -84,7 +83,6 @@ public class SQLMethods {
             }catch (SQLException e){
                 e.printStackTrace();
             }
-        });
     }
 
     public static int getMoney(Player player){
@@ -243,6 +241,124 @@ public class SQLMethods {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void addCoinsPerTeam(String team,Player player){
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE "+team+" SET coins = ? WHERE uuid = ?");
+            preparedStatement.setInt(1,getMoney(player));
+            preparedStatement.setString(2,player.getUniqueId().toString());
+            preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+
+    public static int getTeamMoneyByName(String team_name){
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT Coins FROM team WHERE name = ?");
+                preparedStatement.setString(1,team_name);
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()){
+                    drachmes = rs.getInt("Coins");
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        return drachmes;
+    }
+
+    public static void addTeamCoins(int coins,Player player){
+        int ancien = 0;
+        if(Main.getInstance().Apolon.hasEntry(player.getDisplayName())){
+            ancien = getTeamMoney(2);
+            int nv = ancien+coins;
+            Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(),()->{
+                try {
+                    PreparedStatement preparedStatement = connection.prepareStatement("UPDATE team SET coins = ? WHERE id = ?");
+                    preparedStatement.setInt(1,nv);
+                    preparedStatement.setInt(2,2);
+                    preparedStatement.executeUpdate();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            });
+        }
+        else if(Main.getInstance().Ares.hasEntry(player.getDisplayName())){
+            ancien = getTeamMoney(1);
+            int nv = ancien+coins;
+            Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(),()->{
+                try {
+                    PreparedStatement preparedStatement = connection.prepareStatement("UPDATE team SET coins = ? WHERE id = ?");
+                    preparedStatement.setInt(1,nv);
+                    preparedStatement.setInt(2,1);
+                    preparedStatement.executeUpdate();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            });
+        }
+        else if(Main.getInstance().Poseidon.hasEntry(player.getDisplayName())){
+            ancien = getTeamMoney(4);
+            int nv = ancien+coins;
+            Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(),()->{
+                try {
+                    PreparedStatement preparedStatement = connection.prepareStatement("UPDATE team SET coins = ? WHERE id = ?");
+                    preparedStatement.setInt(1,nv);
+                    preparedStatement.setInt(2,4);
+                    preparedStatement.executeUpdate();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            });
+        }
+        else if(Main.getInstance().Zeus.hasEntry(player.getDisplayName())){
+            ancien = getTeamMoney(5);
+            int nv = ancien+coins;
+
+            Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(),()->{
+                try {
+                    PreparedStatement preparedStatement = connection.prepareStatement("UPDATE team SET coins = ? WHERE id = ?");
+                    preparedStatement.setInt(1,nv);
+                    preparedStatement.setInt(2,5);
+                    preparedStatement.executeUpdate();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            });
+        }
+        else if(Main.getInstance().Dionysos.hasEntry(player.getDisplayName())){
+            ancien = getTeamMoney(3);
+            int nv = ancien+coins;
+            Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(),()->{
+                try {
+                    PreparedStatement preparedStatement = connection.prepareStatement("UPDATE team SET coins = ? WHERE id = ?");
+                    preparedStatement.setInt(1,nv);
+                    preparedStatement.setInt(2,3);
+                    preparedStatement.executeUpdate();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            });
+        }
+
+
+    }
+
+    public static void addTeamMoney(String team_name,int coins){
+        int ancien = getTeamMoneyByName(team_name);
+        int nv = coins+ancien;
+        Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(),()->{
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE team SET coins = ? WHERE name = ?");
+                preparedStatement.setInt(1,nv);
+                preparedStatement.setString(2,team_name);
+                preparedStatement.executeUpdate();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        });
     }
 
     public static void removeToTeam(String team, Player player){
