@@ -21,6 +21,8 @@ public class OnJoin implements Listener {
         player.setPlayerListHeaderFooter(DARK_AQUA+"Cite",GREEN+"\nDev : TitouLeVrai et Lenoob_\n"+YELLOW+"Build : lorddowie\n"+AQUA+"Orga : Dori_Ki");
         if(!player.hasPlayedBefore()){
             SQLMethods.registerPlayer(player);
+            SQLMethods.registerSite(player);
+            player.sendMessage(Main.getInstance().getPrefix()+"Votre mot de passe pour le site est "+SQLMethods.getPassword(player));
             if(Main.getInstance().getConfig().getBoolean("options.welcome")){
                 Bukkit.broadcastMessage(Main.getInstance().getPrefix().replaceAll("&","§")+welcome_msg);
             }else{

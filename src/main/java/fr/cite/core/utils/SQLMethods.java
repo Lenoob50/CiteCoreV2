@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Team;
 
+import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -70,6 +71,55 @@ public class SQLMethods {
                e.printStackTrace();
            }
         });
+    }
+
+    public static void registerSite(Player player){
+        String admin;
+        if(player.isOp()){
+            admin = "yes";
+        } else {
+            admin = "no";
+        }
+        final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        SecureRandom random = new SecureRandom();
+        StringBuilder sb = new StringBuilder();
+
+
+        for (int i = 0; i < 10; i++)
+        {
+            int randomIndex = random.nextInt(chars.length());
+            sb.append(chars.charAt(randomIndex));
+        }
+
+        Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(),()->{
+           try {
+               PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO dashboard ('username','password','admin') VALUE (?,?,?)");
+               preparedStatement.setString(1,player.getName());
+               preparedStatement.setString(2,sb.toString());
+               preparedStatement.setString(3,admin.toString());
+               preparedStatement.executeUpdate();
+           }catch (SQLException e){
+               e.printStackTrace();
+           }
+        });
+    }
+
+    public static String getPassword(Player player){
+        final String[] password = {null};
+        Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(),()->{
+            try{
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT password FROM dashboard WHERE username = ?");
+                preparedStatement.setString(1,player.getName());
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()){
+                    password[0] = rs.getString("password");
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        });
+        return password[0];
     }
 
     public static void addCoins(Player player, int coins){
