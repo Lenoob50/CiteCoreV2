@@ -7,7 +7,7 @@ compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
 group 'fr.cite'
-version 'alpha-1.1.4'
+version 'alpha-1.1.5'
 
 repositories {
     mavenCentral()

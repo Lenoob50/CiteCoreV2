@@ -74,6 +74,7 @@ public class Main extends JavaPlugin {
         getCommand("lead").setTabCompleter(new TabLead());
         getCommand("teammoney").setTabCompleter(new TabTeams());
         getCommand("teammoney").setExecutor(new CommandTeamMoney());
+        getCommand("bc").setExecutor(new CommandBroadcast());
         //Connexion � la base de donn�e
         databaseManager = new DatabaseManager();
         //Enregistrements des evenements relatifs au jeu
