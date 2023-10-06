@@ -18,7 +18,7 @@ public class CommandBroadcast implements CommandExecutor {
             }
             if(args.length >= 1) {
                 for(Player ps : Bukkit.getOnlinePlayers()){
-                    ps.sendTitle("&3Annonce de ",p.getName().toString());
+                    ps.sendTitle(ChatColor.DARK_AQUA+"Annonce de ",ChatColor.DARK_AQUA+""+p.getName().toString());
                 }
                 StringBuilder bc = new StringBuilder();
                 for(String part : args) {

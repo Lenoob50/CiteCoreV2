@@ -30,7 +30,7 @@ commands:
     description: Commande relative à l'argent d'une team
     permission: core.money.use
     permission-message: Vous n'avez pas la permission
-  broadcast:
+  bc:
     description: Commande relative au message
     permission: core.bc.use
     permission-message: Vous n'avez pas la permission

@@ -1,6 +1,7 @@
 package fr.cite.core.listeners;
 
 import fr.cite.core.Main;
+import fr.cite.core.inventory.InventoryManager;
 import fr.cite.core.scoreboard.Scoreboard;
 import fr.cite.core.utils.SQLMethods;
 import org.bukkit.Bukkit;
@@ -8,6 +9,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.Inventory;
+
+import javax.swing.*;
+
 import static org.bukkit.ChatColor.*;
 
 public class OnJoin implements Listener {
@@ -18,6 +23,11 @@ public class OnJoin implements Listener {
         String welcome_msg = Main.getInstance().getConfig().getString("msg.welcome");
         welcome_msg = welcome_msg.replaceAll("%player_name%",player.getName());
         event.setJoinMessage("");
+        if(SQLMethods.getPlayerTeam(player)=="No Team"){
+            Inventory inv = new InventoryManager().Team;
+            player.openInventory(inv);
+            player.updateInventory();
+        }
         player.setPlayerListHeaderFooter(DARK_AQUA+"Cite",GREEN+"\nDev : TitouLeVrai et Lenoob_\n"+YELLOW+"Build : lorddowie\n"+AQUA+"Orga : Dori_Ki");
         if(!player.hasPlayedBefore()){
             SQLMethods.registerPlayer(player);

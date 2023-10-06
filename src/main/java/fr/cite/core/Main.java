@@ -152,9 +152,6 @@ public class Main extends JavaPlugin {
         System.out.println(scoreboard.getTeams().toArray());
         System.out.println(scoreboard.getTeams().size());
 
-        for (Team team : scoreboard.getTeams()){
-            System.out.println("Team : "+team.getName());
-        }
 
         try {
             this.csvToMap();
