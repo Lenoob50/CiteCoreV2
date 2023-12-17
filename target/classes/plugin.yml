@@ -1,0 +1,52 @@
+name: CiteCore
+version: '1.0-SNAPSHOT'
+main: fr.cite.core.Main
+api-version: '1.19'
+prefix: [CiteCore]
+depend: [WorldGuard]
+authors: [Lenoob, TitouLeVrai]
+commands:
+  npc:
+    description: Commande relatives au npc
+    permission: core.npc.use
+    permission-message: Vous n'avez pas la permission
+  money:
+    description: Commande relative au Drachmes
+    permission: core.money.use
+    permission-message: Vous n'avez pas la permission
+  leaderboard:
+    description: Commande relative au classement
+    permission: core.leader.use
+    permission-message: Vous n'avez pas la permission
+  teams:
+    description: Commande realtive au teams
+    permission: core.teams.use
+    permission-message: Vous n'avez pas la permission
+  lead:
+    description: Commande relative l'holograme du classement
+    permission: core.classement.use
+    permission-message: Vous n'avez pas la permission
+  teammoney:
+    description: Commande relative l'argent d'une team
+    permission: core.money.use
+    permission-message: Vous n'avez pas la permission
+  bc:
+    description: Commande relative au message
+    permission: core.bc.use
+    permission-message: Vous n'avez pas la permission
+  notif:
+    description: Commande relative au notif
+    permission: core.notif.use
+    permission-message: Vous n'avez pas la permission
+  site:
+    description: Commande relative au site
+    permission: core.site.use
+    permission-message: Vous n'avez pas la permission
+  lb:
+    description: Commande relative au luckyblock
+    permission: core.lb.use
+    permission-message: Vous n'avez pas la permission
+  residence:
+    description: Commande relative au ressidence
+    permission-message: Vous n'avez pas la permission
+    permission: core.res.use
