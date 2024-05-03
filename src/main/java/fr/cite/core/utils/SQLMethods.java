@@ -6,14 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -39,6 +33,9 @@ public class SQLMethods {
     public static String password = "";
 
     public static int price = 0;
+
+    public static ArrayList blackMarket = new ArrayList();
+    public static ArrayList itemList = new ArrayList();
 
     static {
         try {
@@ -73,49 +70,6 @@ public class SQLMethods {
             }
         });
     }
-
-    public static void registerSite(Player player) {
-        String admin;
-        if (player.isOp()) {
-            admin = "yes";
-        } else {
-            admin = "no";
-        }
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        SecureRandom random = new SecureRandom();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 10; i++) {
-            int randomIndex = random.nextInt("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".length());
-            sb.append("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".charAt(randomIndex));
-        }
-        Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), () -> {
-            try {
-                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `dashboard` (`username`,`password`,`admin`) VALUES (?,?,?)");
-                preparedStatement.setString(1, player.getName());
-                preparedStatement.setString(2, sb.toString());
-                preparedStatement.setString(3, admin);
-                preparedStatement.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
-    public static String getPassword(Player player) {
-        Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), () -> {
-            try {
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT password FROM dashboard WHERE username = ?");
-                preparedStatement.setString(1, player.getName());
-                ResultSet rs = preparedStatement.executeQuery();
-                while (rs.next())
-                    password = rs.getString("password");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        });
-        return password;
-    }
-
     public static void addCoins(Player player, int coins) {
         int ancien = getMoney(player);
         int nv = coins + ancien;
@@ -144,10 +98,6 @@ public class SQLMethods {
         return argent;
     }
 
-    public static int classement(Team team) {
-        int classement = 0;
-        return classement;
-    }
 
     public static HashMap doTeamClassement() {
         HashMap<String, Integer> classement = new HashMap<>();
@@ -165,7 +115,7 @@ public class SQLMethods {
     public static HashMap doPlayerClassement() {
         HashMap<String, Integer> classement = new HashMap<>();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT Pseudo,Coins FROM core ORDER BY Coins ASC LIMIT 10");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT Pseudo,Coins FROM core ORDER BY Coins DESC LIMIT 10");
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next())
                 classement.put(rs.getString("Pseudo"), Integer.valueOf(rs.getInt("Coins")));
@@ -190,7 +140,6 @@ public class SQLMethods {
     }
 
     public static int getTeamMoney(int team_id) {
-        Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), () -> {
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement("SELECT Coins FROM team WHERE id = ?");
                 preparedStatement.setInt(1, team_id);
@@ -202,7 +151,6 @@ public class SQLMethods {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        });
         return drachmes;
     }
 
@@ -249,41 +197,7 @@ public class SQLMethods {
         return place_board;
     }
 
-    public static HashMap<String, Integer> teamLeader(String team_name) {
-        HashMap<String, Integer> place_board = new HashMap<>();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT name,coins FROM " + team_name + " ORDER BY " + team_name + ".coins DESC");
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next())
-                place_board.put(resultSet.getString("name"), Integer.valueOf(resultSet.getInt("coins")));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return place_board;
-    }
 
-    public static void addToTeam(String team, Player player) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO " + team + "(`uuid`, `name`, `coins`) VALUES (?,?,?)");
-            preparedStatement.setString(1, player.getUniqueId().toString());
-            preparedStatement.setString(2, player.getName());
-            preparedStatement.setInt(3, getMoney(player));
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void addCoinsPerTeam(String team, Player player) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE " + team + " SET coins = ? WHERE uuid = ?");
-            preparedStatement.setInt(1, getMoney(player));
-            preparedStatement.setString(2, player.getUniqueId().toString());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static int getTeamMoneyByName(String team_name) {
         try {
@@ -433,4 +347,40 @@ public class SQLMethods {
            }
         return price;
     }
+
+    public static ArrayList getBlackMarket(){
+        blackMarket.clear();
+        for(Integer index : Main.getInstance().getBlack_market()){
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT item FROM prix WHERE id = ?");
+                preparedStatement.setInt(1,index);
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()){
+                    blackMarket.add(rs.getString("item"));
+                }
+            }catch (SQLException exception){
+                exception.printStackTrace();
+            }
+        }
+        return blackMarket;
+    }
+
+    public static  ArrayList getItemList(int min, int max){
+        int tour = max - min;
+        itemList.clear();
+        for(int i = 0; i<tour; i++){
+            try{
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT item FROM prix WHERE id = ?");
+                preparedStatement.setInt(1,min+i);
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()){
+                    itemList.add(rs.getString("item"));
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return itemList;
+    }
+
 }

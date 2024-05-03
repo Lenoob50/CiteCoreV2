@@ -111,7 +111,21 @@ public class CommandNPC implements CommandExecutor {
           npc.setCanPickupItems(false);
           p.sendMessage(Main.getInstance().getPrefix() + ChatColor.GREEN + " L'id de l'entity est " + ChatColor.AQUA + "" + npc.getEntityId());
           Bukkit.getWorld("world").spawnParticle(Particle.VILLAGER_HAPPY, npc.getLocation(), 50);
-        } 
+        }
+        if (args[0].equalsIgnoreCase("BM")) {
+          Villager npc = (Villager)playerLoc.getWorld().spawnEntity(playerLoc, EntityType.VILLAGER);
+          npc.setVillagerType(Villager.Type.SWAMP);
+          npc.setProfession(Villager.Profession.LEATHERWORKER);
+          npc.setInvulnerable(true);
+          npc.setAI(false);
+          npc.setVillagerLevel(4);
+          npc.setCustomName(ChatColor.DARK_PURPLE + "Black Market");
+          npc.setCustomNameVisible(true);
+          npc.setCanPickupItems(false);
+          p.sendMessage(Main.getInstance().getPrefix() + ChatColor.GREEN + " L'id de l'entity est " + ChatColor.AQUA + "" + npc.getEntityId());
+          Bukkit.getWorld("world").spawnParticle(Particle.VILLAGER_HAPPY, npc.getLocation(), 50);
+        }
+
 
         if (args[0].equalsIgnoreCase("info")) {
           p.sendMessage(ChatColor.AQUA + "===========||" + ChatColor.GREEN + "NPC INFO" + ChatColor.AQUA + "||===========");
@@ -123,6 +137,7 @@ public class CommandNPC implements CommandExecutor {
           p.sendMessage(ChatColor.AQUA + "Item : " + ChatColor.GREEN + " Permet de faire spawn le pnj " + ChatColor.AQUA + "Items");
           p.sendMessage(ChatColor.AQUA + "Quete : " + ChatColor.GREEN + " Permet de faire spawn le pnj " + ChatColor.AQUA + " Quetes");
           p.sendMessage(ChatColor.AQUA + "Mario : " + ChatColor.GREEN + " Permet de faire spawn le pnj " + ChatColor.AQUA + " Mario");
+          p.sendMessage(ChatColor.AQUA + "BM : " + ChatColor.GREEN + " Permet de faire spawn le pnj " + ChatColor.AQUA + " Black Market");
           p.sendMessage(ChatColor.AQUA + "===========||" + ChatColor.GREEN + "NPC INFO" + ChatColor.AQUA + "||===========");
         } 
         if (args[0].equalsIgnoreCase("remove")) {

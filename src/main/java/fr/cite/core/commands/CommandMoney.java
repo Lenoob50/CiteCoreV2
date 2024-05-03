@@ -28,13 +28,7 @@ public class CommandMoney implements CommandExecutor {
           SQLMethods.addCoins(target, Integer.parseInt(args[2]));
           int coins = SQLMethods.getMoney(target);
           player.sendMessage(Main.getInstance().getPrefix() + ChatColor.GREEN + " Le compte de " + target.getName() + " contient " + coins + " Drachmes");
-          if ((Main.getInstance()).scoreboard.getEntryTeam(target.getDisplayName()).getName().equalsIgnoreCase("Arès")) {
-            SQLMethods.addCoinsPerTeam((Main.getInstance()).scoreboard.getEntryTeam(target.getDisplayName()).getName().replace("Arès", "Ares"), target);
-          } else if ((Main.getInstance()).scoreboard.getEntryTeam(target.getDisplayName()).getName().equalsIgnoreCase("Poséidon")) {
-            SQLMethods.addCoinsPerTeam((Main.getInstance()).scoreboard.getEntryTeam(target.getDisplayName()).getName().replace("Poséidon", "Poseidon"), target);
-          } else {
-            SQLMethods.addCoinsPerTeam((Main.getInstance()).scoreboard.getEntryTeam(target.getDisplayName()).getName(), target);
-          } 
+
           SQLMethods.addTeamCoins(Integer.parseInt(args[2]), target);
         } 
         if (args[0].equalsIgnoreCase("remove")) {
@@ -43,13 +37,7 @@ public class CommandMoney implements CommandExecutor {
           SQLMethods.addCoins(target, -to_rem);
           int coins = SQLMethods.getMoney(target);
           player.sendMessage(Main.getInstance().getPrefix() + ChatColor.GREEN + " Le compte de " + target.getName() + " contient " + coins + " Drachmes");
-          if ((Main.getInstance()).scoreboard.getEntryTeam(target.getDisplayName()).getName().equalsIgnoreCase("Arès")) {
-            SQLMethods.addCoinsPerTeam((Main.getInstance()).scoreboard.getEntryTeam(target.getDisplayName()).getName().replace("Arès", "Ares"), target);
-          } else if ((Main.getInstance()).scoreboard.getEntryTeam(target.getDisplayName()).getName().equalsIgnoreCase("Poséidon")) {
-            SQLMethods.addCoinsPerTeam((Main.getInstance()).scoreboard.getEntryTeam(target.getDisplayName()).getName().replace("Poséidon", "Poseidon"), target);
-          } else {
-            SQLMethods.addCoinsPerTeam((Main.getInstance()).scoreboard.getEntryTeam(target.getDisplayName()).getName(), target);
-          } 
+
           SQLMethods.addTeamCoins(-to_rem, target);
         } 
       } 

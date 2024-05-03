@@ -79,7 +79,7 @@ public class OnTalk implements Listener {
                   .getDisplayName() + ChatColor.GOLD + " >> " + ChatColor.RESET + "" + newmsg);
         }
       } 
-    } else if (player.isOp()) {
+    } else if (player.isOp() && player.getName() != "Louisdu88") {
       for (Player op : Bukkit.getOnlinePlayers()) {
         op.sendMessage(ChatColor.WHITE + "[" + ChatColor.GREEN + "Global" + ChatColor.RESET + "] " + ChatColor.DARK_RED + "Admin " + player.getName() + ChatColor.GOLD + " >> " + ChatColor.RESET + "" + event
                 .getMessage());

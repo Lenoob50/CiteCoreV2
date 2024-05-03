@@ -17,11 +17,7 @@ import static org.bukkit.ChatColor.*;
 
 public class InventoryManager {
   public Inventory Banque;
-  
-  public Inventory Food;
-  
   public Inventory Team;
-  
   public Inventory mario;
 
   public Inventory block_j1;
@@ -30,9 +26,33 @@ public class InventoryManager {
   public Inventory block_j4;
   public Inventory block_j5;
 
+  public Inventory food_j1;
+  public Inventory food_j2;
+  public Inventory food_j3;
+  public Inventory food_j4;
+  public Inventory food_j5;
+
+  public Inventory divers_j1;
+  public Inventory divers_j2;
+  public Inventory divers_j3;
+  public Inventory divers_j4;
+  public Inventory divers_j5;
+
+  public Inventory ressource_j1;
+  public Inventory ressource_j2;
+  public Inventory ressource_j3;
+  public Inventory ressource_j4;
+  public Inventory ressource_j5;
+
+  public Inventory ItemJ1;
+  public Inventory ItemJ2;
+  public Inventory ItemJ3;
+  public Inventory ItemJ4;
+  public Inventory ItemJ5;
+  public Inventory Black_Market;
+
   public InventoryManager() {
     Banque();
-    Food();
     Team();
     Mario();
     Block_J1();
@@ -40,13 +60,29 @@ public class InventoryManager {
     Block_J3();
     Block_J4();
     Block_J5();
+    food_j1();
+    food_j2();
+    food_j3();
+    food_j4();
+    food_j5();
+    divers_j1();
+    divers_j2();
+    divers_j3();
+    divers_j4();
+    divers_j5();
+    ressource_j1();
+    ressource_j2();
+    ressource_j3();
+    ressource_j4();
+    ressource_j5();
+    ItemJ1();
+    ItemJ2();
+    ItemJ3();
+    ItemJ4();
+    ItemJ5();
+    Black_Market();
   }
-  
-  public void Food() {
-    Inventory invt = Bukkit.createInventory(null, 54, ChatColor.AQUA + "Vendeur de Nourriture");
-    ItemStack steak = new ItemStack(Material.COOKED_BEEF, 1);
-  }
-  
+
   public void Team() {
     Inventory inventory = Bukkit.createInventory(null, 27, ChatColor.AQUA + "Choix des Teams");
     ItemStack apollon = new ItemStack(Material.LIME_WOOL, 1);
@@ -99,7 +135,7 @@ public class InventoryManager {
     SkullMeta meta1 = (SkullMeta)lb1.getItemMeta();
     meta1.setOwner("luck");
     meta1.setDisplayName("Lucky blocks");
-    lore.add(": &28G");
+    lore.add("§28 Gold");
     meta1.setLore(lore);
     meta1.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
     meta1.addItemFlags(new ItemFlag[] { ItemFlag.HIDE_ATTRIBUTES });
@@ -456,6 +492,41 @@ public class InventoryManager {
     cauldron_meta.setLore(cauldron_lore);
     cauldron_meta.setDisplayName(GREEN+"Vendre Chaudron");
     cauldron.setItemMeta(cauldron_meta);
+    ItemStack beacon = new ItemStack(Material.BEACON);
+    ArrayList<String> beacon_lore = new ArrayList<>();
+    beacon_lore.add(AQUA+"Vendre "+GREEN+""+beacon.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(beacon.getType().toString()));
+    ItemMeta beacon_meta = beacon.getItemMeta();
+    beacon_meta.setLore(beacon_lore);
+    beacon_meta.setDisplayName(GREEN+"Vendre Beacon");
+    beacon.setItemMeta(beacon_meta);
+    ItemStack terracotta = new ItemStack(Material.TERRACOTTA);
+    ArrayList<String> terracotta_lore = new ArrayList<>();
+    terracotta_lore.add(AQUA+"Vendre "+GREEN+""+terracotta.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(terracotta.getType().toString()));
+    ItemMeta terracotta_meta = terracotta.getItemMeta();
+    terracotta_meta.setDisplayName(GREEN+"Vendre terracotta");
+    terracotta_meta.setLore(terracotta_lore);
+    terracotta.setItemMeta(terracotta_meta);
+    ItemStack quartz = new ItemStack(Material.QUARTZ_BLOCK);
+    ArrayList<String> quart_lore = new ArrayList<>();
+    quart_lore.add(AQUA+"Vendre "+GREEN+""+quartz.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(quartz.getType().toString()));
+    ItemMeta quartz_meta = quartz.getItemMeta();
+    quartz_meta.setLore(quart_lore);
+    quartz_meta.setDisplayName(GREEN+"Vendre bloc de Quartz");
+    quartz.setItemMeta(quartz_meta);
+    ItemStack hay_bale = new ItemStack(Material.HAY_BLOCK);
+    ArrayList<String> hay_lore = new ArrayList<>();
+    hay_lore.add(AQUA+"Vendre "+GREEN+""+hay_bale.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(hay_bale.getType().toString()));
+    ItemMeta hay_meta = hay_bale.getItemMeta();
+    hay_meta.setLore(hay_lore);
+    hay_meta.setDisplayName(GREEN+"Vendre bloc de blé");
+    hay_bale.setItemMeta(hay_meta);
+    ItemStack purpur = new ItemStack(Material.PURPUR_BLOCK);
+    ArrayList<String> purpur_lore = new ArrayList<>();
+    purpur_lore.add(AQUA+"Vendre "+GREEN+""+quartz.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(quartz.getType().toString()));
+    ItemMeta purpur_meta = purpur.getItemMeta();
+    purpur_meta.setDisplayName(GREEN+"Vendre bloc de Purpur");
+    purpur_meta.setLore(purpur_lore);
+    purpur.setItemMeta(purpur_meta);
 
 
     invt.setItem(0,sponge);
@@ -470,7 +541,349 @@ public class InventoryManager {
     invt.setItem(9,mycellium);
     invt.setItem(10,nether_brick);
     invt.setItem(11,cauldron);
-    this.block_j4 = invt;
+    invt.setItem(12,beacon);
+    invt.setItem(13,terracotta);
+    invt.setItem(14,quartz);
+    invt.setItem(15,hay_bale);
+    invt.setItem(16,purpur);
+    this.block_j5 = invt;
+  }
+
+  public void food_j1(){
+    ArrayList<String> list = SQLMethods.getItemList(17,20);
+    Inventory invt = Bukkit.createInventory(null,27,ChatColor.GOLD+"Vente de Nourriture");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.food_j1 = invt;
+  }
+
+  public void food_j2(){
+    ArrayList<String> list = SQLMethods.getItemList(17,24);
+    Inventory invt = Bukkit.createInventory(null,27,ChatColor.GOLD+"Vente de Nourriture");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.food_j2 = invt;
+  }
+
+  public void food_j3(){
+    ArrayList<String> list = SQLMethods.getItemList(17,28);
+    Inventory invt = Bukkit.createInventory(null,27,ChatColor.GOLD+"Vente de Nourriture");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.food_j3 = invt;
+  }
+
+  public void food_j4(){
+    ArrayList<String> list = SQLMethods.getItemList(17,32);
+    Inventory invt = Bukkit.createInventory(null,27,ChatColor.GOLD+"Vente de Nourriture");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.food_j4 = invt;
+  }
+
+  public void food_j5(){
+    ArrayList<String> list = SQLMethods.getItemList(17,38);
+    Inventory invt = Bukkit.createInventory(null,27,ChatColor.GOLD+"Vente de Nourriture");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.food_j5 = invt;
+  }
+
+  public void divers_j1(){
+    ArrayList<String> list = SQLMethods.getItemList(39,40);
+    Inventory invt = Bukkit.createInventory(null,27,ChatColor.GOLD+"Vente d'item divers");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.divers_j1 = invt;
+  }
+
+  public void divers_j2(){
+    ArrayList<String> list = SQLMethods.getItemList(39,41);
+    Inventory invt = Bukkit.createInventory(null,27,ChatColor.GOLD+"Vente d'item divers");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.divers_j2 = invt;
+  }
+
+  public void divers_j3(){
+    ArrayList<String> list = SQLMethods.getItemList(39,42);
+    Inventory invt = Bukkit.createInventory(null,27,ChatColor.GOLD+"Vente d'item divers");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.divers_j3 = invt;
+  }
+
+  public void divers_j4(){
+    ArrayList<String> list = SQLMethods.getItemList(39,43);
+    Inventory invt = Bukkit.createInventory(null,27,ChatColor.GOLD+"Vente d'item divers");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.divers_j4 = invt;
+  }
+
+  public void divers_j5(){
+    ArrayList<String> list = SQLMethods.getItemList(39,46);
+    Inventory invt = Bukkit.createInventory(null,27,ChatColor.GOLD+"Vente d'item divers");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.divers_j5 = invt;
+  }
+
+  public void ressource_j1(){
+    ArrayList<String> list = SQLMethods.getItemList(51,56);
+    Inventory invt = Bukkit.createInventory(null,36,ChatColor.GOLD+"Vente de ressources");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.ressource_j1 = invt;
+  }
+
+  public void ressource_j2(){
+    ArrayList<String> list = SQLMethods.getItemList(51,61);
+    Inventory invt = Bukkit.createInventory(null,36,ChatColor.GOLD+"Vente de ressources");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.ressource_j2 = invt;
+  }
+
+  public void ressource_j3(){
+    ArrayList<String> list = SQLMethods.getItemList(51,66);
+    Inventory invt = Bukkit.createInventory(null,36,ChatColor.GOLD+"Vente de ressources");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.ressource_j3 = invt;
+  }
+
+  public void ressource_j4(){
+    ArrayList<String> list = SQLMethods.getItemList(51,71);
+    Inventory invt = Bukkit.createInventory(null,36,ChatColor.GOLD+"Vente de ressources");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.ressource_j4 = invt;
+  }
+
+  public void ressource_j5(){
+    ArrayList<String> list = SQLMethods.getItemList(51,76);
+    Inventory invt = Bukkit.createInventory(null,36,ChatColor.GOLD+"Vente de ressources");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.ressource_j5 = invt;
+  }
+
+  public void ItemJ1(){
+    ArrayList<String> list = SQLMethods.getItemList(77,82);
+    Inventory invt = Bukkit.createInventory(null,27,ChatColor.GOLD+"Vente d'Item");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.ItemJ1 = invt;
+  }
+
+  public void ItemJ2(){
+    ArrayList<String> list = SQLMethods.getItemList(77,86);
+    Inventory invt = Bukkit.createInventory(null,27,ChatColor.GOLD+"Vente d'Item");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.ItemJ2 = invt;
+  }
+
+  public void ItemJ3(){
+    ArrayList<String> list = SQLMethods.getItemList(77,91);
+    Inventory invt = Bukkit.createInventory(null,27,ChatColor.GOLD+"Vente d'Item");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.ItemJ3 = invt;
+  }
+
+  public void ItemJ4(){
+    ArrayList<String> list = SQLMethods.getItemList(77,95);
+    Inventory invt = Bukkit.createInventory(null,27,ChatColor.GOLD+"Vente d'Item");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.ItemJ4 = invt;
+  }
+
+  public void ItemJ5(){
+    ArrayList<String> list = SQLMethods.getItemList(77,99);
+    Inventory invt = Bukkit.createInventory(null,27,ChatColor.GOLD+"Vente d'Item");
+    for(String itemList : list ){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+ SQLMethods.getPrice(item.getType().toString())+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.ItemJ5 = invt;
+  }
+
+  public void Black_Market(){
+    ArrayList<String> list = SQLMethods.getBlackMarket();
+    Inventory invt = Bukkit.createInventory(null,27, DARK_PURPLE+"Marché Noir");
+    for(String itemList : list){
+      ItemStack item = new ItemStack(Material.valueOf(itemList),1);
+      int price = (int) (SQLMethods.getPrice(item.getType().toString())*1.1);
+      ArrayList<String> lore = new ArrayList<>();
+      lore.add(AQUA+"Vendre "+GREEN+""+item.getType()+AQUA+" pour "+GREEN+""+price+AQUA+" drachmes");
+      ItemMeta itemMeta = item.getItemMeta();
+      itemMeta.setLore(lore);
+      itemMeta.setDisplayName(GREEN+"Vendre "+item.getType());
+      item.setItemMeta(itemMeta);
+      invt.addItem(item);
+    }
+    this.Black_Market = invt;
   }
 
 

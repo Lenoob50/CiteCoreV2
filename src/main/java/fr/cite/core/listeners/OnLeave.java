@@ -15,7 +15,7 @@ public class OnLeave implements Listener {
     if (player.isOp()) {
       Bukkit.broadcastMessage(ChatColor.GRAY + "[" + ChatColor.RED + "-" + ChatColor.GRAY + "]" + ChatColor.RED + " Admin " + ChatColor.RESET + "" + player.getName());
     } else {
-      Bukkit.broadcastMessage(ChatColor.GRAY + "[" + ChatColor.RED + "-" + ChatColor.GRAY + "]" + ChatColor.RESET + "" + player.getName());
+      Bukkit.broadcastMessage(ChatColor.GRAY + "[" + ChatColor.RED + "-" + ChatColor.GRAY + "] " + ChatColor.RESET + "" + player.getName());
     } 
   }
 }

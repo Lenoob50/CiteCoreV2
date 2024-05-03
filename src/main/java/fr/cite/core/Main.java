@@ -1,23 +1,7 @@
 package fr.cite.core;
 
-import fr.cite.core.commands.CommandBroadcast;
-import fr.cite.core.commands.CommandClassement;
-import fr.cite.core.commands.CommandLB;
-import fr.cite.core.commands.CommandLeader;
-import fr.cite.core.commands.CommandMoney;
-import fr.cite.core.commands.CommandNPC;
-import fr.cite.core.commands.CommandRes;
-import fr.cite.core.commands.CommandSite;
-import fr.cite.core.commands.CommandTeamMoney;
-import fr.cite.core.commands.CommandTeams;
-import fr.cite.core.listeners.OnInventoryInterract;
-import fr.cite.core.listeners.OnJoin;
-import fr.cite.core.listeners.OnLBBreak;
-import fr.cite.core.listeners.OnLeave;
-import fr.cite.core.listeners.OnNPCClicked;
-import fr.cite.core.listeners.OnNPCHurt;
-import fr.cite.core.listeners.OnSignClicked;
-import fr.cite.core.listeners.OnTalk;
+import fr.cite.core.commands.*;
+import fr.cite.core.listeners.*;
 import fr.cite.core.scoreboard.ScoreboardManager;
 import fr.cite.core.tabcomplete.ResTab;
 import fr.cite.core.tabcomplete.TabLead;
@@ -29,15 +13,19 @@ import fr.cite.core.utils.DatabaseManager;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.World;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.TabCompleter;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
@@ -78,6 +66,8 @@ public class Main extends JavaPlugin {
 
     public HashMap<Integer, String> event = new HashMap<>();
 
+    public ArrayList<Integer> black_market = new ArrayList<>();
+
     public void onLoad() {
         super.onLoad();
     }
@@ -86,6 +76,7 @@ public class Main extends JavaPlugin {
         this.databaseManager.close();
         super.onDisable();
     }
+
 
     public void onEnable() {
         instance = this;
@@ -105,7 +96,20 @@ public class Main extends JavaPlugin {
         getCommand("lb").setExecutor(new CommandLB());
         getCommand("residence").setExecutor(new CommandRes());
         getCommand("residence").setTabCompleter(new ResTab());
+        getCommand("debug-cmd").setExecutor(new CommandDebug());
+        getCommand("invsee").setExecutor(new CommandInvsee());
+        getCommand("openec").setExecutor(new CommandEnder());
+        getCommand("offre").setExecutor(new CommandOffre());
+        getCommand("hideholo").setExecutor(new CommandeHide());
+        getCommand("join").setExecutor(new CommandJoin());
+        getCommand("kickall").setExecutor(new CommandKickAll());
+        getCommand("bug").setExecutor(new CommandBug());
+        getCommand("spawn").setExecutor(new CommandSpawn());
+        World world = Bukkit.getWorld("world");
+        world.setPVP(false);
         this.databaseManager = new DatabaseManager();
+        BossBar bossbar = Bukkit.createBossBar(ChatColor.AQUA + "Partenaires : KineticHosting Faites /offre", BarColor.BLUE, BarStyle.SOLID);
+        bossbar.setVisible(true);
         this.pm.registerEvents(new OnJoin(), this);
         this.pm.registerEvents((Listener)new OnLeave(), this);
         this.pm.registerEvents((Listener)new OnTalk(), this);
@@ -114,6 +118,9 @@ public class Main extends JavaPlugin {
         this.pm.registerEvents((Listener)new OnNPCHurt(), this);
         this.pm.registerEvents((Listener)new OnSignClicked(), this);
         this.pm.registerEvents((Listener)new OnLBBreak(), this);
+        this.pm.registerEvents(new OnShop(),this);
+        this.pm.registerEvents(new OnPing(),this);
+        this.pm.registerEvents(new OnLbUse(),this);
         this.configuration.addDefault("msg.prefix", ChatColor.DARK_AQUA + "" + ChatColor.BOLD + "Cite >>" + ChatColor.RESET);
         this.configuration.addDefault("options.welcome", Boolean.valueOf(false));
         this.configuration.addDefault("msg.welcome", "%player_name% " + ChatColor.GREEN + " rejoins la citpour la premifois souhaitez lui la bienvenue");
@@ -156,13 +163,13 @@ public class Main extends JavaPlugin {
         this.Ares = this.scoreboard.registerNewTeam("Ares");
         this.Ares.setAllowFriendlyFire(true);
         this.Ares.setDisplayName(ChatColor.RED + "");
-        this.Ares.setPrefix(ChatColor.RED + "Arès");
+        this.Ares.setPrefix(ChatColor.RED + "Arès ");
         if (!this.scoreboard.getTeams().contains("Arès"))
                 System.out.println("Création de la team Arès effectué");
         this.Poseidon = this.scoreboard.registerNewTeam("Poseidon");
         this.Poseidon.setAllowFriendlyFire(true);
         this.Poseidon.setDisplayName(ChatColor.AQUA + "");
-        this.Poseidon.setPrefix(ChatColor.AQUA + "Poséidon");
+        this.Poseidon.setPrefix(ChatColor.AQUA + "Poséidon ");
         if (!this.scoreboard.getTeams().contains("Poséidon"))
                 System.out.println("Création de la team Poséidon effectué");
         this.Zeus = this.scoreboard.registerNewTeam("Zeus");
@@ -184,6 +191,11 @@ public class Main extends JavaPlugin {
         }
         this.defis.put(Integer.valueOf(1), "Flower : Recupére 10 fleurs jaunes et ramène les moi");
         this.defis.put(Integer.valueOf(2), "");
+        Random random = new Random();
+        for(int i = 0; i<7; i++){
+            int alea = random.nextInt(1,99);
+            black_market.add(alea);
+        }
         super.onEnable();
     }
 
@@ -197,6 +209,10 @@ public class Main extends JavaPlugin {
 
     public DatabaseManager getDatabaseManager() {
         return this.databaseManager;
+    }
+
+    public ArrayList<Integer> getBlack_market() {
+        return black_market;
     }
 
     public HashMap csvToMap() throws IOException {
@@ -225,4 +241,5 @@ public class Main extends JavaPlugin {
         }
         return hashMap;
     }
+
 }

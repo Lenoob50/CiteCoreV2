@@ -17,13 +17,6 @@ public class CommandTeams implements CommandExecutor {
       if (args.length == 0) {
         player.sendMessage(Main.getInstance().getPrefix() + " Il vous faut au moins un argument");
       } else {
-        if (args[0].equalsIgnoreCase("Arès")) {
-          SQLMethods.addToTeam(args[0].replace("Arès", "Ares"), target);
-        } else if (args[0].equalsIgnoreCase("Poséidon")) {
-          SQLMethods.addToTeam(args[0].replace("Poséidon", "Poseidon"), target);
-        } else {
-          SQLMethods.addToTeam(args[0], target);
-        } 
         if ((Main.getInstance()).Apolon.getEntries().contains(target.getDisplayName())) {
           SQLMethods.removeToTeam("Apollon", target);
         }
@@ -41,9 +34,6 @@ public class CommandTeams implements CommandExecutor {
         }
         if (args[0].equalsIgnoreCase("Apollon")) {
           (Main.getInstance()).Apolon.addEntry(target.getDisplayName());
-          System.out.println((Main.getInstance()).scoreboard);
-          System.out.println(args[1]);
-          System.out.println((Main.getInstance()).Apolon.getEntries());
           player.sendMessage(Main.getInstance().getPrefix() + "" + target.getName() + " ajouté à la team " + (Main.getInstance()).scoreboard.getPlayerTeam((OfflinePlayer)target).getName());
           SQLMethods.setTeams(target);
         } 

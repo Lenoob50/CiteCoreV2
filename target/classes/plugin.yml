@@ -50,3 +50,39 @@ commands:
     description: Commande relative au ressidence
     permission-message: Vous n'avez pas la permission
     permission: core.res.use
+  debug-cmd:
+    description: Commande de debug
+    permission-message: Vous n'avez pas la permission
+    permission: core.debug.use
+  invsee:
+    description: Commande pour voir l'inventaire
+    permission: core.invsee.use
+    permission-message: Vous n'avez pas la permission
+  openec:
+    description: Commande pour l'ec
+    permission-message: Vous n'avez pas la permission
+    permission: core.openec.use
+  offre:
+    description: Commande du partenaire
+    permission: core.offre.use
+    permission-message: Vous n'avez pas la permission
+  hideholo:
+    description: Commande pour cacher les hologrames
+    permission-message: Vous n'avez pas la permission
+    permission: core.hide.use
+  join:
+    description: Commande pour choisir sa team
+    permission-message: Vous n'avez pas la permission
+    permission: core.choice.use
+  kickall:
+    description: Commande pour kick tout les joueurs
+    permission: core.kicall.use
+    permission-message: Vous n'avez pas la permissions d'executer ceci
+  bug:
+    description: Commande pour report des bugs
+    permission: core.bug.use
+    permission-message: Vous n'avez pas la permission
+  spawn:
+    description: Commande pour revenir au spawn
+    permission: core.spawn.use
+    permission-message: Vous n'avez pas la permission
